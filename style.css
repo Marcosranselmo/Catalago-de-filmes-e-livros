@@ -15,3 +15,33 @@
 #bannerDiretores button {
     background-color: black;
 }
+
+/* ADMINISTRAÇÃO */
+/* .adm {
+    background-color: black;
+} */
+
+.adm main {
+    background-color: white;
+    min-height: 500px;
+}
+
+.opcoes i {
+    font-size: 50px;
+}
+
+.opcoes p {
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.opcoes a {
+    color: #A9A9A9;
+    text-decoration: none;
+}
+
+.opcoes a:hover {
+    color: #808080;
+    text-decoration: none;
+}
+/* //ADMINISTRAÇÃO */

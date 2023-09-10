@@ -3,9 +3,9 @@
 
 <head>
     <?php include_once "header.html" ?>
-    <title>Home</title>
+    <title>Filmes</title>
 </head>
-
+  
 <body>
     <!-- MENU SUPERIOR -->
     <?php include_once "menuSuperior.html" ?>
