@@ -1,7 +1,17 @@
 .nav-item {
-    margin-right: 30px;
+    margin-right: 20px;
 }
 
 .nav-item a {
     letter-spacing: 1px;
+}
+
+/* BANNERS DOS DIRETORES */
+
+#bannerDiretores {
+    max-width: 800px;
+}
+
+#bannerDiretores button {
+    background-color: black;
 }

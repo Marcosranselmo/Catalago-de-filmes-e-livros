@@ -15,93 +15,112 @@
     <?php include_once "slide.php" ?>
     <!-- //SLIDER -->
 
-    <!-- PRINCIPAL -->
+    <!-- CORPO PRINCIPAL -->
     
-    <h2 class="text-center mt-5 mb-5">Filmes em Destaque</h2>
-        <div class="container">
-
-    <!-- VITRINE -->
-            <div class="row">
-                <div class="col-md-6 col-lg-4 col-sm-6">
-                    <div class="card">
-                        <img src="imagens/imgatores/ator1.jpg" alt="" class="card-img-top">
+    <!-- ATORES/ATRIzES POPULARES -->
+    <hr>
+    <h2 class="text-center">Atores/AtriZes mais buscados</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 atoresPopulares card mb-3">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img src="imagens/imgatores/ator1.jpg" alt="" class="rounded w-100">
+                    </div>
+                    <div class="col-md-8">
                         <div class="card-body">
                             <h3 class="card-title">Nome do(a) Ator(a)</h3>
                             <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.
                                 Iusto ea delectus non consequatur culpa autem soluta maiores tempora. Id culpa dicta
-                                rerum cupiditate libero distinctio pariatur beatae fuga quod deleniti.
-                            </p>
-                            <a href="#" class="btn btn-primary w-100">Saiba mais</a>
+                                rerum cupiditate libero distinctio pariatur beatae fuga quod deleniti.</p>
                         </div>
                     </div>
+                    <a href="#" class="btn btn-info w-100">Saiba mais</a>
                 </div>
-                <div class="col-md-6 col-lg-4 col-sm-6">
-                    <div class="card">
-                        <img src="imagens/imgatores/ator2.jpg" alt="" class="card-img-top">
+            </div>
+            <div class="col-lg-4 col-md-6 atoresPopulares card mb-3">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img src="imagens/imgatores/ator2.jpg" alt="" class="rounded w-100">
+                    </div>
+                    <div class="col-md-8">
                         <div class="card-body">
                             <h3 class="card-title">Nome do(a) Ator(a)</h3>
                             <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.
                                 Iusto ea delectus non consequatur culpa autem soluta maiores tempora. Id culpa dicta
-                                rerum cupiditate libero distinctio pariatur beatae fuga quod deleniti.
-                            </p>
-                            <a href="#" class="btn btn-primary w-100">Saiba mais</a>
+                                rerum cupiditate libero distinctio pariatur beatae fuga quod deleniti.</p>
                         </div>
                     </div>
+                    <a href="#" class="btn btn-info w-100">Saiba mais</a>
                 </div>
-                <div class="col-md-6 col-lg-4 col-sm-6">
-                    <div class="card">
-                        <img src="imagens/imgatores/ator3.jpg" alt="" class="card-img-top">
+            </div>
+            <div class="col-lg-4 col-md-6 atoresPopulares card mb-3">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img src="imagens/imgatores/ator3.jpg" alt="" class="rounded w-100">
+                    </div>
+                    <div class="col-md-8">
                         <div class="card-body">
                             <h3 class="card-title">Nome do(a) Ator(a)</h3>
                             <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.
                                 Iusto ea delectus non consequatur culpa autem soluta maiores tempora. Id culpa dicta
-                                rerum cupiditate libero distinctio pariatur beatae fuga quod deleniti.
-                            </p>
-                            <a href="#" class="btn btn-primary w-100">Saiba mais</a>
+                                rerum cupiditate libero distinctio pariatur beatae fuga quod deleniti.</p>
                         </div>
                     </div>
+                    <a href="#" class="btn btn-info w-100">Saiba mais</a>
                 </div>
-                <div class="col-md-6 col-lg-4 col-sm-6">
-                    <div class="card">
-                        <img src="imagens/imgatores/ator4.jpg" alt="" class="card-img-top">
+            </div>
+            <div class="col-lg-4 col-md-6 atoresPopulares card mb-3">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img src="imagens/imgatores/ator4.jpg" alt="" class="rounded w-100">
+                    </div>
+                    <div class="col-md-8">
                         <div class="card-body">
                             <h3 class="card-title">Nome do(a) Ator(a)</h3>
                             <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.
                                 Iusto ea delectus non consequatur culpa autem soluta maiores tempora. Id culpa dicta
-                                rerum cupiditate libero distinctio pariatur beatae fuga quod deleniti.
-                            </p>
-                            <a href="#" class="btn btn-primary w-100">Saiba mais</a>
+                                rerum cupiditate libero distinctio pariatur beatae fuga quod deleniti.</p>
                         </div>
                     </div>
+                    <a href="#" class="btn btn-info w-100">Saiba mais</a>
                 </div>
-                <div class="col-md-6 col-lg-4 col-sm-6">
-                    <div class="card">
-                        <img src="imagens/imgatores/ator5.jpg" alt="" class="card-img-top">
+            </div>
+            <div class="col-lg-4 col-md-6 atoresPopulares card mb-3">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img src="imagens/imgatores/ator5.jpg" alt="" class="rounded w-100">
+                    </div>
+                    <div class="col-md-8">
                         <div class="card-body">
                             <h3 class="card-title">Nome do(a) Ator(a)</h3>
                             <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.
                                 Iusto ea delectus non consequatur culpa autem soluta maiores tempora. Id culpa dicta
-                                rerum cupiditate libero distinctio pariatur beatae fuga quod deleniti.
-                            </p>
-                            <a href="#" class="btn btn-primary w-100">Saiba mais</a>
+                                rerum cupiditate libero distinctio pariatur beatae fuga quod deleniti.</p>
                         </div>
                     </div>
+                    <a href="#" class="btn btn-info w-100">Saiba mais</a>
                 </div>
-                <div class="col-md-6 col-lg-4 col-sm-6">
-                    <div class="card">
-                        <img src="imagens/imgatores/ator6.jpg" alt="" class="card-img-top">
+            </div>
+            <div class="col-lg-4 col-md-6 atoresPopulares card mb-3">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img src="imagens/imgatores/ator6.jpg" alt="" class="rounded w-100">
+                    </div>
+                    <div class="col-md-8">
                         <div class="card-body">
                             <h3 class="card-title">Nome do(a) Ator(a)</h3>
                             <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.
                                 Iusto ea delectus non consequatur culpa autem soluta maiores tempora. Id culpa dicta
-                                rerum cupiditate libero distinctio pariatur beatae fuga quod deleniti.
-                            </p>
-                            <a href="#" class="btn btn-primary w-100">Saiba mais</a>
+                                rerum cupiditate libero distinctio pariatur beatae fuga quod deleniti.</p>
                         </div>
                     </div>
+                    <a href="#" class="btn btn-info w-100">Saiba mais</a>
                 </div>
-    <!-- //VITRINE -->
+            </div>
         </div>
+    </div>
+    <!-- //ATORES/ATRIzES POPULARES -->
 
     <!-- DIRETORES POPULARES -->
     <hr>
@@ -176,7 +195,7 @@
     </div>
     <!-- //DIRETORES POPULARES -->
 
-    <!-- // PRINCIPAL -->
+    <!-- //CORPO PRINCIPAL -->
 
     <!-- FOOTER -->
     <?php include_once "footer.html" ?>
