@@ -18,7 +18,7 @@
         <div class="row gy-4 mt-4">
             <div class="col-md-3 col-sm-6 opcoes text-center">
                 <i class="fa-solid fa-film"></i>
-                <a href="filmesAdm.php">
+                <a href="./administracao/filmesAdm.php">
                     <p>Cadastrar Filmes</p>
                 </a>
             </div>
