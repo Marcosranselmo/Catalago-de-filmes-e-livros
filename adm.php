@@ -18,7 +18,7 @@
         <div class="row gy-4 mt-4">
             <div class="col-md-3 col-sm-6 opcoes text-center">
                 <i class="fa-solid fa-film"></i>
-                <a href="./administracao/filmesAdm.php">
+                <a href="administracao/filmesAdm.php">
                     <p>Cadastrar Filmes</p>
                 </a>
             </div>
@@ -42,7 +42,7 @@
             </div>
             <div class="col-md-3 col-sm-6 opcoes text-center">
                 <i class="fa-solid fa-list"></i>
-                <a href="administracao/categorias.php">
+                <a href="administracao/categoriasAdm.php">
                     <p>Categorias</p>
                 </a>
             </div>
