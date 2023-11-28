@@ -5,6 +5,15 @@
         include_once "header.html";
     ?>
     <title>Home</title>
+    <script type="text/javascript">
+        function validaCampos() {
+            if (document.fmCategorias.txtCategoria.value == "" ) {
+                alert("Favor preencher no campo o nome da categoria");
+                document.fmCategorias.txtCategoria.focus();
+                return false;
+            }
+        }
+    </script>
 </head>
 <body class="adminitracao">
 
@@ -23,9 +32,10 @@
             </div>
             <div class="col-md-9 col-sm-9">
                 <h2 class="text-center">Cadastro Categorias</h2>
-                <form name="fmCategorias" method="get" action="categoriasAdm.php">
+                <form name="fmCategorias" method="get" action="categoriasAdm.php" 
+                onsubmit="return validaCampos()">
                     </label>Nome da categoria</label><br>
-                    <input type="text" name="txtCategoria" class="form-control">
+                    <input type="text" name="txtCategoria" class="form-control" maxlength="30">
                     <button type="submit" class="btn btn-primary w-100 mt-2">Cadastrar</button>
                 </form>     
                 <br>
