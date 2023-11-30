@@ -3,6 +3,7 @@
 <head>
     <?php
         include_once "header.html";
+        include_once "../mais/conexao.php";
     ?>
     <title>Home</title>
     <script type="text/javascript">
@@ -44,6 +45,6 @@
             </div>
         </div>
     </main>
-
+    <?php if(isset($con)){ mysqli_close($con); } ?>
 </body>
 </html>
