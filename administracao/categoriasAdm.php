@@ -92,7 +92,7 @@
                                         <label class="col-md-12"><?php echo $nomeCategoria[$i]; ?></label>
                                         <div class="btn-group btn-group-sm" role="group" arial-label="Basic sample">
                                             <a href="editaCategoriaAdm.php?editaCategoria=<?php echo $codigoCategoria[$i];
-                                            ?>" class="btn btn-primary">Editar</a>
+                                            ?>&nomeCategoria=<?php echo $nomeCategoria[$i]; ?>" class="btn btn-primary">Editar</a>
                                             <a href="editaCategoriaAdm.php?excluirCategoria=<?php echo $codigoCategoria[$i]; 
                                             ?>" class="btn btn-secondary" onclick="return confirm('Tem certeza que deseja excluir esta categoria?')">Excluir</a>
                                         </div>
