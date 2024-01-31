@@ -60,7 +60,7 @@
             </div>
             <div class="col-md-3 col-sm-6 opcoes text-center">
                 <i class="fa-solid fa-users"></i>
-                <a href="administracao/usuarios.php">
+                <a href="administracao/usuariosAdm.php">
                     <p>Usuários</p>
                 </a>
             </div>

@@ -63,7 +63,6 @@
                             echo "Erro ao executar a query.";
                         }
                     }else{
-                    
                 ?>
                 <h4 class="text-center mb-4">Cadastro Categorias</h4>
                 <form name="fmCategorias" method="get" action="categoriasAdm.php" onsubmit="return validaCampos()">
@@ -87,17 +86,15 @@
                                 $linkCategoria[$i] = $reg['Link_Categoria'];
                                 $codigoCategoria[$i] = $reg['Codigo_Categoria'];
                                 ?>
-
-                                    <div class="col-md-3 itensCadastrados text-center">
-                                        <label class="col-md-12"><?php echo $nomeCategoria[$i]; ?></label>
-                                        <div class="btn-group btn-group-sm" role="group" arial-label="Basic sample">
-                                            <a href="editaCategoriaAdm.php?editaCategoria=<?php echo $codigoCategoria[$i];
-                                            ?>&nomeCategoria=<?php echo $nomeCategoria[$i]; ?>" class="btn btn-primary">Editar</a>
-                                            <a href="editaCategoriaAdm.php?excluirCategoria=<?php echo $codigoCategoria[$i]; 
-                                            ?>" class="btn btn-secondary" onclick="return confirm('Tem certeza que deseja excluir esta categoria?')">Excluir</a>
-                                        </div>
+                                <div class="col-md-3 itensCadastrados text-center">
+                                    <label class="col-md-12"><?php echo $nomeCategoria[$i]; ?></label>
+                                    <div class="btn-group btn-group-sm" role="group" arial-label="Basic sample">
+                                        <a href="editaCategoriaAdm.php?editaCategoria=<?php echo $codigoCategoria[$i];
+                                        ?>&nomeCategoria=<?php echo $nomeCategoria[$i]; ?>" class="btn btn-primary">Editar</a>
+                                        <a href="editaCategoriaAdm.php?excluirCategoria=<?php echo $codigoCategoria[$i]; 
+                                        ?>" class="btn btn-secondary" onclick="return confirm('Tem certeza que deseja excluir esta categoria?')">Excluir</a>
                                     </div>
-                                    
+                                </div>
                             <?php
                             $i++;
                             }
