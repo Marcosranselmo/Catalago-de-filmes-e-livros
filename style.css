@@ -1,3 +1,9 @@
+* { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .nav-item {
     margin-right: 20px;
 }
@@ -18,12 +24,12 @@
 
 /* ADMINISTRAÇÃO */
 .adm main {
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     min-height: 500px;
 }
 
 .opcoes i {
-    font-size: 50px;
+    font-size: 30px;
 }
 
 .opcoes p {

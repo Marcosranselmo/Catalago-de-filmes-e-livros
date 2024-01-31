@@ -21,5 +21,5 @@ if(mysqli_connect_errno()) {
 mysqli_query($con, "SET NAMES 'utf8'");
 mysqli_query($con, "SET character_set_connection=utf8");
 mysqli_query($con, "SET character_set_client=utf8");
-// mysqli_query($con, "SET character_set_result=utf8");
+// mysqli_query($con, "SET character_set_result=uft8");
 ?>

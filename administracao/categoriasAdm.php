@@ -16,7 +16,7 @@
         }
     </script>
 </head>
-<body class="adminitracao">
+<body class="administracao">
 
     <!-- MENU SUPERIOR -->
 
@@ -26,7 +26,7 @@
     <!-- PRINCIPAL -->
 
     <main class="container">
-        <h3 class="text-center mt-5">CATEGORIAS - Administração</h3><br>
+        <h3 class="text-center mt-5 mb-4">Categorias - Administração</h3><br>
         <div class="row-auto d-flex">
             <div class="col-md-3 col-sm-3">
                 <?php include_once "menuAdm.html" ?>            
@@ -41,12 +41,15 @@
                             $reg=mysqli_fetch_assoc($res);
                             $saida = $reg['saida'];
                             echo $saida;
+                            echo "<br><br>";
+                            echo "<a href='categoriasAdm.php' target='_self'>Voltar</a> ";
                         } else {
                             echo "Erro ao executar a query.";
                         }
-                    }
+                    }else{
+                    
                 ?>
-                <h2 class="text-center">Cadastro Categorias</h2>
+                <h3 class="text-center mb-4">Cadastro Categorias</h3>
                 <form name="fmCategorias" method="get" action="categoriasAdm.php" onsubmit="return validaCampos()">
                     </label>Nome da categoria</label><br>
                     <input type="text" name="txtCategoria" class="form-control" maxlength="30">
@@ -54,7 +57,40 @@
                 </form>     
                 <br>
                 <hr>
-                <h2 class="text-center">Caterogias cadastradas:</h2>
+                <h2 class="text-center mb-4">Categorias cadastradas:</h2>
+                <div class="row">
+                    <?php  
+                        $sql = 'SELECT * FROM vw_retorna_categorias';
+                        if ($res=mysqli_query($con, $sql)) {
+                            $nomeCategoria = array();
+                            $linkCategoria = array();
+                            $codigoCategoria = array();
+                            $i = 0;
+                            while ($reg=mysqli_fetch_assoc($res)) {
+                                $nomeCategoria[$i] = $reg['Nome_Categoria'];
+                                $linkCategoria[$i] = $reg['Link_Categoria'];
+                                $codigoCategoria[$i] = $reg['Codigo_Categoria'];
+                                ?>
+
+                                    <div class="col-md-3 itensCadastrados text-center">
+                                        <label><?php echo $nomeCategoria[$i]; ?></label>
+                                        <div class="btn-group btn-group-sm" role="group" arial-label="Basic sample">
+                                            <a href="editaCategoriaAdm.php?editaCategoria=<?php echo $codigoCategoria[$i];
+                                            ?>" class="btn btn-primary">Editar</a>
+                                            <a href="categoriasAdm.php?excluirCategoria=<?php echo $codigoCategoria[$i]; 
+                                            ?>" class="btn btn-secondary" onclick="return confirm('Tem certeza que deseja excluir esta categoria?')">Excluir</a>
+                                        </div>
+                                    </div>
+                            <?php
+                            $i++;
+                            }
+                        }
+                    ?>
+                    </div>
+
+                    <?php
+                    }
+                ?>
             </div>
         </div>
     </main>
