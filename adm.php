@@ -1,8 +1,16 @@
 <!doctype html>
 <html lang="pt-br">
-
+<?php
+    if (!isset($_SESSION)) {
+        session_start();
+    }
+    if ($_SESSION['acesso'] == true) {
+?>
 <head>
-    <?php include_once "header.html" ?>
+<?php
+    include_once "header.html";
+    include_once "../mais/conexao.php";
+    ?>
     <title>Administração</title>
 
 </head>
@@ -72,7 +80,7 @@
             </div>
             <div class="col-md-3 col-sm-6 opcoes text-center">
                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                <a href="#">
+                <a href="administracao/logoff.php">
                     <p>Sair</p>
                 </a>
             </div>
@@ -86,6 +94,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
-</body>
 
+    <?php if (isset($con)) { mysqli_close($con); } ?>
+</body>
+<?php 
+    }else{
+        ?>
+        <meta http-equiv="refresh" content=0;url="administracao/login.php">
+        <?php
+    } 
+?>
 </html>

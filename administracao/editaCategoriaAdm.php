@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<?php 
+<?php
     if (!isset($_SESSION)) {
         session_start();
     }
+    if ($_SESSION['acesso'] == true) {
 ?>
 <html>
-
 <head>
     <?php
     include_once "header.html";
@@ -119,9 +119,15 @@
             </div>
         </div>
     </main>
-    <?php if (isset($con)) {
-        mysqli_close($con);
-    } ?>
+    <?php if (isset($con)) { mysqli_close($con); } ?>
 </body>
+
+<?php 
+    }else{
+        ?>
+        <meta http-equiv="refresh" content=0;url="administracao/login.php">
+        <?php
+    } 
+?>
 
 </html>
