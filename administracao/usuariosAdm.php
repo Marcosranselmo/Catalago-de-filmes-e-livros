@@ -57,6 +57,43 @@
                 <?php include_once "menuAdm.html" ?>            
             </div>
             <div class="col-md-9 col-sm-9">
+                <?php
+                    if (isset($_POST['btnSubmitUsuario'])) {
+                        $nome = $_POST['txtNome'];
+                        $email = $_POST['txtEmail'];
+                        $login = $_POST['txtLogin'];
+                        $senha = $_POST['txtSenha1'];
+                        $nivel = $_POST['selNivel'];
+                        $salt = '123';
+
+                        $sql = "CALL sp_cadastra_usuario('$nome','$login','$email','$senha','$salt','$nivel',@saida,@rotulo)";
+                            if($res=mysqli_query($con,$sql)) {
+                                $reg=mysqli_fetch_assoc($res);
+                                $saida = $reg['saida'];
+                                $rotulo = $reg['saida_rotulo'];
+                                switch ($rotulo) {
+                                    case 'TUDO CERTO!':
+                                        $alert = 'alert-success';
+                                        break;
+                                    case 'OPS!':
+                                        $alert = 'alert-warning';
+                                        break;  
+                                    case 'ERRO!':
+                                        $alert = 'alert-danger';
+                                        break;      
+                                }
+                                ?>
+                                <div class="alert <?php echo $alert; ?>" role="alert">
+                                    <h3><?php echo $rotulo; ?></h3>
+                                    <?php echo $saida; ?>
+                                    <a href="usuariosAdm.php" class="alert-link" target="_self">Voltar</a>
+                                </div>
+                                <?php
+                            } else {
+                                echo "Erro ao executar a query.";
+                            }
+                    }else{
+                ?>
                 <h4 class="text-center">Cadastrar novo usuário</h4>  
                 <form name="fmUsuarios" method="post" action="usuariosAdm.php" onsubmit="return ValidaCampos()">
             
@@ -82,9 +119,11 @@
                 </select>
 
                 <button type="submit" name="btnSubmitUsuario" class="btn btn-primary w-100">Cadastrar usuário</button>
-            </form>        
+            </form> 
+            <?php
+            }
+            ?>       
             </div>
-
         </div>
     </main>
     <?php if(isset($con)){ mysqli_close($con); } ?>
