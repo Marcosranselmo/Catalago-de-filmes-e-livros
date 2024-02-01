@@ -6,6 +6,7 @@
         include_once "../mais/conexao.php";
     ?>
     <title>Home</title>
+    
     <script type="text/javascript">
         function ValidaCampos() {
             if (document.fmUsuarios.txtNome.value == "") {
@@ -40,6 +41,7 @@
             }
         }
     </script>
+    
 </head>
 <body class="administracao">
 
@@ -94,35 +96,58 @@
                             }
                     }else{
                 ?>
-                <h4 class="text-center">Cadastrar novo usuário</h4>  
-                <form name="fmUsuarios" method="post" action="usuariosAdm.php" onsubmit="return ValidaCampos()">
-            
-                <label>Nome:</label>
-                <input type="text" name="txtNome" class="form-control mb-2" maxlength="70">
+      
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a href="#tabFormulario" class="nav-link active" id="linkFormulario" 
+                        data-toggle="tab" role="tab" aria-controls="tabFormulario">Cadastro</a>        
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a href="#tabExibicao" class="nav-link" id="linkExibicao" 
+                        data-toggle="tab" role="tab" aria-controls="tabExibicao">Usuários</a>        
+                    </li>
+                </ul>
 
-                <label>E-mail:</label>
-                <input type="email" name="txtEmail" class="form-control mb-2" maxlength="50" aria-describedby="emailHelp">
+                <div class="tab-content" id="meusConteudos">
+                    <div class="tab-pane fade show-active" id="tabFormulario" role="tabpanel"
+                        aria-labelledby="linkFormulario">
+                        
+                        <h4 class="text-center mt-5">Cadastrar novo usuário</h4>  
+                        <form name="fmUsuarios" method="post" action="usuariosAdm.php" onsubmit="return ValidaCampos()">
+                    
+                            <label>Nome:</label>
+                            <input type="text" name="txtNome" class="form-control mb-2" maxlength="70">
 
-                <label>Login:</label>
-                <input type="text" name="txtLogin" class="form-control mb-2" maxlength="30">
+                            <label>E-mail:</label>
+                            <input type="email" name="txtEmail" class="form-control mb-2" maxlength="50" aria-describedby="emailHelp">
 
-                <label>Senha:</label>
-                <input type="password" name="txtSenha1" class="form-control mb-2" maxlength="16">
+                            <label>Login:</label>
+                            <input type="text" name="txtLogin" class="form-control mb-2" maxlength="30">
 
-                <label>Repita a senha:</label>
-                <input type="password" name="txtSenha2" class="form-control mb-2" maxlength="16">
+                            <label>Senha:</label>
+                            <input type="password" name="txtSenha1" class="form-control mb-2" maxlength="16">
 
-                <label>Nível de Usuário:</label>
-                <select name="selNivel" class="form-control mb-4">
-                    <option value="1">1 - Administrador</option>
-                    <option value="2">2 - Moderador</option>
-                </select>
+                            <label>Repita a senha:</label>
+                            <input type="password" name="txtSenha2" class="form-control mb-2" maxlength="16">
 
-                <button type="submit" name="btnSubmitUsuario" class="btn btn-primary w-100">Cadastrar usuário</button>
-            </form> 
-            <?php
-            }
-            ?>       
+                            <label>Nível de Usuário:</label>
+                            <select name="selNivel" class="form-control mb-4">
+                                <option value="1">1 - Administrador</option>
+                                <option value="2">2 - Moderador</option>
+                            </select>
+
+                            <button type="submit" name="btnSubmitUsuario" class="btn btn-primary w-100">Cadastrar usuário</button>
+                        </form> 
+                    </div>
+                    <div class="tab-pane fade mt-5" id="tabExibicao" role="tabpanel"
+                        aria-labelledby="linkExibicao">
+                        <h4 class="text-center">Usuários Cadastrados</h4>     
+                    </div>
+                </div>
+
+                <?php
+                }
+                ?>       
             </div>
         </div>
     </main>

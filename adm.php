@@ -9,7 +9,7 @@
 <head>
 <?php
     include_once "header.html";
-    include_once "../mais/conexao.php";
+    include_once "./mais/conexao.php";
     ?>
     <title>Administração</title>
 

@@ -12,7 +12,7 @@
 
 <html>
     <?php if (isset($con)) { mysqli_close($con); } ?>
-    <br><br>
-    <center><h2>Fazendo Logoff</h2></center>
+    <br><br><br><br><br><br>
+    <center><h2>Fazendo Logoff...</h2></center>
     <meta http-equiv="refresh" content=2;url="../index.php">
 </html>

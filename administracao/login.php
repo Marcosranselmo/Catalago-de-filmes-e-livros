@@ -62,9 +62,9 @@
                                 $_SESSION['acesso']=true;
                                 ?>
                                 <div class="alert alert-success" role="alert">
-                                    <h5 class="text-center">Login efetuado com sucesso!</h5>
+                                    <h5 class="text-center">Login efetuado com sucesso! Redirecionando...</h5>
                                 </div>
-                                <meta http-equiv="refresh" content=2;url="../adm.php">
+                                <meta http-equiv="refresh" content=3;url="../adm.php">
                             <?php
                             }else{ ?>
                                  <div class="alert alert-danger" role="alert">
