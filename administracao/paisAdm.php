@@ -86,7 +86,7 @@
                                 $linkPais[$i] = $reg['link_pais'];
                                 $codigoPais[$i] = $reg['codigo_pais'];
                                 ?>
-                                <div class="col-md-3 itensPais text-center">
+                                <div class="col-md-3 itensPais text-center mt-4">
                                     <label class="col-md-12"><?php echo $nomePais[$i]; ?></label>
                                     <div class="btn-group btn-group-sm" role="group" arial-label="Basic sample">
                                         <a href="editaPaisAdm.php?editaPais=<?php echo $codigoPais[$i];

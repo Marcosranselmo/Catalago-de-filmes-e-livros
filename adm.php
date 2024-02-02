@@ -44,7 +44,7 @@
             </div>
             <div class="col-md-3 col-sm-6 opcoes text-center">
                 <i class="fa-solid fa-masks-theater"></i>
-                <a href="administracao/atores.php">
+                <a href="administracao/atoresAdm.php">
                     <p>Atores</p>
                 </a>
             </div>
