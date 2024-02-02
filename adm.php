@@ -84,6 +84,12 @@
                     <p>Sair</p>
                 </a>
             </div>
+            <div class="col-md-3 col-sm-6 opcoes text-center">
+                <i class="fa-solid fa-sliders"></i>
+                <a href="administracao/subirImagem.php">
+                    <p>Subir Imagem</p>
+                </a>
+            </div>
         </div>
 
     </main>
