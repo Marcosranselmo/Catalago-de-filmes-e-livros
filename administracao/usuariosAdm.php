@@ -141,7 +141,35 @@
                     </div>
                     <div class="tab-pane fade mt-5" id="tabExibicao" role="tabpanel"
                         aria-labelledby="linkExibicao">
-                        <h4 class="text-center">Usuários Cadastrados</h4>     
+                        <h4 class="text-center">Usuários Cadastrados</h4>  
+                        <div class="row">
+                            <?php
+                                $sql = "SELECT * FROM vw_usuarios";
+                                if ($res=mysqli_query($con,$sql)) {
+
+                                    $nomeUsuario = array();
+                                    $codigousuario = array();
+                                    $i = 0;
+
+                                    while($reg=mysqli_fetch_assoc($res)) {
+                                        $nomeUsuario[$i] = $reg['nome_usuario'];
+                                        $codigoUsuario[$i] = $reg['codigo_usuario'];
+                                        ?>
+                                        <div class="col-md-4 itensCadastrados text-center">
+                                            <h4><?php echo $nomeUsuario[$i]." codigo: ".$codigoUsuario[$i]; ?></h4>
+                                            <div class="btn-group" role="group" aria-label="Basic sample">
+                                                <a href="#" class="btn btn-primary">Editar</a>
+                                                <a href="#" class="btn btn-danger">Excluir</a>
+                                            </div>
+                                        </div>
+
+                                        <?php
+                                        $i++;
+                                    }
+                                }
+                            
+                            ?>
+                        </div>   
                     </div>
                 </div>
 

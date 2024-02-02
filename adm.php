@@ -62,7 +62,7 @@
             </div>
             <div class="col-md-3 col-sm-6 opcoes text-center">
                 <i class="fa-solid fa-globe"></i>
-                <a href="administracao/paises.php">
+                <a href="administracao/paisAdm.php">
                     <p>Países</p>
                 </a>
             </div>
