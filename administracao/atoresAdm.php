@@ -11,6 +11,7 @@ if ($_SESSION['acesso'] == true) {
         <?php
         include_once "header.html";
         include_once "../mais/conexao.php";
+        include_once "../mais/funcoes.php";
         ?>
         <title>Cadastro Atores</title>
         <script type="text/javascript">
@@ -41,12 +42,70 @@ if ($_SESSION['acesso'] == true) {
 
         <!-- PRINCIPAL -->
         <main class="container">
-            <h3 class="text-center mt-5">Usuário - Administração</h3><br>
+            <h3 class="text-center mt-5">Atores - Administração</h3><br>
             <div class="row-auto d-flex">
                 <div class="col-md-3 col-sm-3 mx-3">
                     <?php include_once "menuAdm.html" ?>            
                 </div>
                 <div class="col-md-9 col-sm-9">
+
+                    <?php
+                        if(isset($_POST['btnSubmitAtores'])) {
+
+                            $nomeImagem1 = $_FILES['fileImagemAtor1']['name'];
+                            $nomeImagem2 = $_FILES['fileImagemAtor2']['name'];
+                            $nomeImagem3 = $_FILES['fileImagemAtor3']['name'];
+
+                            if ($nomeImagem1 <> "" && isset($_FILES['fileImagemAtor1']['name'])) {
+                                $nomeImagem1 = enviaImagem($_FILES['fileImagemAtor1']['name'], "atores", $_FILES['fileImagemAtor1']['tmp_name']);
+                            }else{
+                                $nomeimagem1 = "";
+                            }
+
+                            if ($nomeImagem2 <> "" && isset($_FILES['fileImagemAtor2']['name'])) {
+                                $nomeImagem2 = enviaImagem($_FILES['fileImagemAtor2']['name'], "atores", $_FILES['fileImagemAtor2']['tmp_name']);
+                            }else{
+                                $nomeimagem2 = "";
+                            }
+
+                            if ($nomeImagem3 <> "" && isset($_FILES['fileImagemAtor3']['name'])) {
+                                $nomeImagem3 = enviaImagem($_FILES['fileImagemAtor3']['name'], "atores", $_FILES['fileImagemAtor3']['tmp_name']);
+                            }else{
+                                $nomeimagem3 = "";
+                            }
+
+                            $nome = $_POST['txtNome'];
+                            $pais = $_POST['selPais'];
+                            $bio = $_POST['txtBiografia'];
+
+                            $sql = "CALL sp_cadastra_atores('$nome','$pais','$bio','$nomeImagem1','$nomeImagem2','$nomeImagem3','@saida','@saida_rotulo')";
+                            if($res=mysqli_query($con,$sql)) {
+                                $reg=mysqli_fetch_assoc($res);
+                                $saida = $reg['saida'];
+                                $rotulo = $reg['saida_rotulo'];
+                                switch ($rotulo) {
+                                    case 'TUDO CERTO!':
+                                        $alert = 'alert-success';
+                                        break;
+                                    case 'OPS!':
+                                        $alert = 'alert-warning';
+                                        break;  
+                                    case 'ERRO!':
+                                        $alert = 'alert-danger';
+                                        break;      
+                                }
+                                ?>
+                                <div class="alert <?php echo $alert; ?>" role="alert">
+                                    <h3><?php echo $rotulo; ?></h3>
+                                    <?php echo $saida; ?>
+                                    <a href="atoresAdm.php" class="alert-link" target="_self">Voltar</a>
+                                </div>
+                                <?php
+                            } else {
+                                echo "Erro ao executar a query.";
+                            }
+                        }else{
+                    ?>
             
                     <ul class="nav nav-tabs" role="tablist">
                         <li class="nav-item" role="presentation">
@@ -114,6 +173,9 @@ if ($_SESSION['acesso'] == true) {
                             </div>   
                         </div>
                     </div>
+                    <?php
+                    } 
+                    ?>
                 </div>
             </div>
         </main>
