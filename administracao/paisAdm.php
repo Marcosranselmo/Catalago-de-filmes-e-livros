@@ -4,6 +4,7 @@
     <?php
         include_once "header.html";
         include_once "../mais/conexao.php";
+        include_once "../mais/funcoes.php";
     ?>
     <title>Administrar Países</title>
     <script type="text/javascript">
@@ -37,31 +38,9 @@
                         $nomePais = $_GET['txtPais'];
                         $link = $nomePais;
                         $sql = "CALL sp_cadastra_pais('$nomePais','$link',@saida, @rotulo);";
-                        if($res=mysqli_query($con,$sql)) {
-                            $reg=mysqli_fetch_assoc($res);
-                            $saida = $reg['saida'];
-                            $rotulo = $reg['saida_rotulo'];
-                            switch ($rotulo) {
-                                case 'TUDO CERTO!':
-                                    $alert = 'alert-success';
-                                    break;
-                                case 'OPS!':
-                                    $alert = 'alert-warning';
-                                    break;  
-                                case 'ERRO!':
-                                    $alert = 'alert-danger';
-                                    break;      
-                            }
-                            ?>
-                            <div class="alert <?php echo $alert; ?>" role="alert">
-                                <h3><?php echo $rotulo; ?></h3>
-                                <?php echo $saida; ?>
-                                <a href="paisAdm.php" class="alert-link" target="_self">Voltar</a>
-                            </div>
-                            <?php
-                        } else {
-                            echo "Erro ao executar a query.";
-                        }
+
+                        executaQuery($sql, "paisAdm.php");
+
                     }else{
                 ?>
                 <h4 class="text-center mb-4">Cadastrar Paises</h4>
@@ -109,5 +88,12 @@
         </div>
     </main>
     <?php if(isset($con)){ mysqli_close($con); } ?>
+
+<script src="https://kit.fontawesome.com/4bb29d1df9.js" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous">
+</script>
 </body>
 </html>

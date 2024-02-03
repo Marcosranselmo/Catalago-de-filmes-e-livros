@@ -4,6 +4,7 @@
     <?php
         include_once "header.html";
         include_once "../mais/conexao.php";
+        include_once "../mais/funcoes.php";
     ?>
     <title>Home</title>
     
@@ -69,31 +70,9 @@
                         $salt = '123';
 
                         $sql = "CALL sp_cadastra_usuario('$nome','$login','$email','$senha','$salt','$nivel',@saida,@rotulo)";
-                            if($res=mysqli_query($con,$sql)) {
-                                $reg=mysqli_fetch_assoc($res);
-                                $saida = $reg['saida'];
-                                $rotulo = $reg['saida_rotulo'];
-                                switch ($rotulo) {
-                                    case 'TUDO CERTO!':
-                                        $alert = 'alert-success';
-                                        break;
-                                    case 'OPS!':
-                                        $alert = 'alert-warning';
-                                        break;  
-                                    case 'ERRO!':
-                                        $alert = 'alert-danger';
-                                        break;      
-                                }
-                                ?>
-                                <div class="alert <?php echo $alert; ?>" role="alert">
-                                    <h3><?php echo $rotulo; ?></h3>
-                                    <?php echo $saida; ?>
-                                    <a href="usuariosAdm.php" class="alert-link" target="_self">Voltar</a>
-                                </div>
-                                <?php
-                            } else {
-                                echo "Erro ao executar a query.";
-                            }
+
+                        executaQuery($sql, "usuariosAdm.php");
+
                     }else{
                 ?>
       
@@ -179,6 +158,14 @@
             </div>
         </div>
     </main>
-    <?php if(isset($con)){ mysqli_close($con); } ?>
+
+<script src="https://kit.fontawesome.com/4bb29d1df9.js" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous">
+</script>
+
+<?php if(isset($con)){ mysqli_close($con); } ?>
 </body>
 </html>
