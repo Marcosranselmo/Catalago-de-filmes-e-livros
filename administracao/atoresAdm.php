@@ -162,7 +162,7 @@ if ($_SESSION['acesso'] == true) {
                                             <img src="../imagens/atores/<?php echo $imagemAtor[$i]; ?>" class="img-responsive img-thumbnail mb-3" alt="">
                                             <!-- LINHA INATIVA <h6><?php echo $nomeAtor[$i] . " codigo: " . $codigoAtor[$i]; ?></h6> -->
                                             <div class="btn-group btn-group-sm" role="group" arial-label="Basic sample">
-                                                <a href="editaAtoresAdm.php?editaAtor=<?php echo $codigoAtor[$i]; ?>&nomeAtor=<?php echo 
+                                                <a href="editaAtorAdm.php?editaAtor=<?php echo $codigoAtor[$i]; ?>&nomeAtor=<?php echo 
                                                     $nomeAtor[$i]; ?>" class="btn btn-primary">Editar</a>
                                                 <a href="editaAtorAdm.php?excluirAtor=<?php echo $codigoAtor[$i]; ?>" class="btn btn-secondary" 
                                                     onclick="return confirm('Tem certeza que deseja excluir este(a) ator(a)?')">Excluir</a>
