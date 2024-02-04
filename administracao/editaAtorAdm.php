@@ -125,12 +125,48 @@ if ($_SESSION['acesso'] == true) {
                                 </textarea>
 
                                 <label>Fotos do Ator</label>
-                                <input type="file" name="fileImagemAtor1" class="btn btn-success w-100 mb-2" accept="image/png, image/jpg">
-                                <input type="file" name="fileImagemAtor2" class="btn btn-success w-100 mb-2" accept="image/png, image/jpg">
-                                <input type="file" name="fileImagemAtor3" class="btn btn-success w-100 mb-2" accept="image/png, image/jpg">
+                                <div class="row text-center"> 
+                                    <div class="col-md-3"><strong>Imagem</strong></div>
+                                    <div class="col-md-6"><strong>Carregar nova imagem</strong></div>
+                                    <div class="col-md-3"><strong>Excluir imagem</strong></div>
+                                    <?php
+                                    for ($i=0; $i < 3; $i++) { ?>
+                                        <div class="col-md-3">
+                                        <?php
+                                        if (isset($imagensAtor[$i])) { 
+                                            ?>
+                                            <img src="../imagens/atores/<?php echo $imagensAtor[$i]; ?>" title="<?php echo $imagensAtor[$i]; ?>" style="max-width: 100px; padding: 5px;">
+                                            <?php
+                                        }else{
+                                            ?>
+                                            <img src="../imagens/atores/sem_imagem.jpg" title="sem_imagem.jpg" style="max-width: 100px; padding: 5px;">
+                                        <?php
+                                        } ?>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="file" name="<?php echo "fileImagemAtor".$i ?>" 
+                                            class="btn btn-success w-100" accept="image/png, image/jpg">
+                                        </div>
+                                        <div class="col-md-3 text-center">
+                                            <input type="checkbox" name="<?php echo "chExcluir".$i ?>">
+                                        </div>
+                                        <?php
+                                    }
+                                    ?>
 
-                                <button type="submit" name="btnSubmitAtores" class="btn btn-primary w-100">Cadastrar</button>
-                                <br><br>
+                                </div> 
+                                <button type="submit" name="btnSubmitAtores" class="btn btn-primary w-100 mb-1">Salvar Alteraçoes</button>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a href="atoresAdm.php" class="btn btn-success w-100 mb-4" 
+                                        >Voltar</a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a href="editaAtorAdm.php?excluirAtor=<?php echo $codigoAtor; ?>" class="btn btn-danger w-100 mb-4" 
+                                        onclick="return confirm('Tem certeza que deseja excluir este(a) ator(a)?')">Excluir</a>
+                                    </div>
+                                </div>
                             </form>
 
                             <?php
