@@ -26,8 +26,7 @@ function enviaImagem($imagem, $caminho, $imagemTemp)
 }
 
 // FUNÇÃO PAR EXECUTAR AS QUERYS E RETORNAR AS MENSAGENS DE SAIDA
-function executaQuery($sql, $paginaDeRetorno)
-{
+function executaQuery($sql, $paginaDeRetorno){
     include "conexao.php";
     if ($res = mysqli_query($con, $sql)) {
         $reg = mysqli_fetch_assoc($res);
@@ -96,4 +95,76 @@ function excluirImagens($codigo, $alvo)
     }
     if (isset($con)) { mysqli_close($con); }
 }
+
+
+
+function excluiTodasImagens($codigo, $alvo){
+    include "conexao.php";
+
+    $linhas = 0;
+    $where = $alvo . "_codigo";
+
+    //SELECT * FROM imagens WHERE atores_codigo = 3 ex.
+    $sql = "SELECT * FROM imagens WHERE ".$where." = $codigo";
+    if ($res = mysqli_query($con, $sql)) {
+        $linhas = mysqli_affected_rows($con);
+        if ($linhas > 0) {
+            while ($reg = mysqli_fetch_assoc($res)) {
+
+                $delete = unlink("../imagens/".$alvo."/".$reg["caminho"]);
+                if (!$delete) {
+                    ?>
+                    <div class="alert danger" role="alert">
+                        <h3>Erro!</h3>
+                        <p>Algo deu errado ao excluir a imagem: <?php echo $reg['caminho']; ?></p>
+                    </div>
+                <?php
+                }
+            }
+        }
+    }else{ ?>
+
+        <div class="alert danger" role="alert">
+            <h3>Erro!</h3>
+            <p>Algo deu errado ao executar a query!</p>
+        </div>
+        <?php
+    }
+    if (isset($con)) { mysqli_close($con); }
+}
+
+
+
+
+function excluiUmaImagens($codigo, $alvo){
+    include "conexao.php";
+
+    //SELECT * FROM imagens WHERE atores_codigo = 3 ex.
+    $sql = "SELECT * FROM imagens WHERE codigo = $codigo";
+    if ($res = mysqli_query($con, $sql)) {
+            while ($reg = mysqli_fetch_assoc($res)) {
+            $delete = unlink("../imagens/".$alvo."/".$reg["caminho"]);
+            if (!$delete) {
+                ?>
+                <div class="alert danger" role="alert">
+                    <h3>Erro!</h3>
+                    <p>Algo deu errado ao excluir a imagem: <?php echo $reg['caminho']; ?></p>
+                </div>
+            <?php
+            }
+        }
+    }else{ ?>
+
+        <div class="alert danger" role="alert">
+            <h3>Erro!</h3>
+            <p>Algo deu errado ao executar a query!</p>
+        </div>
+        <?php
+    }
+    if (isset($con)) { mysqli_close($con); }
+}
+
+
+
+
 ?>

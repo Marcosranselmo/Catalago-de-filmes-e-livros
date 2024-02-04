@@ -52,7 +52,7 @@ if ($_SESSION['acesso'] == true) {
                         if (isset($_GET['excluirAtor'])) {
                             $codigoAtor = $_GET['excluirAtor'];
                             // excluir as imagens do ator
-                            excluirImagens($codigoAtor, 'atores');
+                            excluiTodasImagens($codigoAtor, 'atores');
 
                             $sql = "CALL sp_deleta_atores($codigoAtor, @saida, @saida_rotulo)";
                             executaQuery($sql, "atoresAdm.php");
@@ -60,9 +60,9 @@ if ($_SESSION['acesso'] == true) {
                         }elseif(isset($_GET['editaAtor'])) {
 
                             /* CRIAÇÃO DE ARRAYS DE SESSÃO */
-                            $_SESSION['caminho_imagem'] = array();
-                            $_SESSION['codigo_imagem'] = array();
-    
+                            $_SESSION['caminho_imagem'][$i] = $reg['caminho'];
+                            $_SESSION['codigo_imagem'][$i] = $reg['codigo'];
+   
                             /* CARREGAR AS INFORMAÇÕES DO(A) ATOR/ATRI */
                             $codigoAtor = $_GET['editaAtor'];
                             $_SESSION['codigo_ator'] = $codigoAtor;
@@ -74,8 +74,10 @@ if ($_SESSION['acesso'] == true) {
                                 $paisAtor = $reg['pais_ator'];
                                 $biografiaAtor = $reg['biografia_ator'];
                             }else{
+                            
                                 echo "Algo deu errado ao executar a query!";
                             }
+                        
 
                             $imagnsAtor = array();
                             $imagensCodigo = array();
@@ -85,11 +87,15 @@ if ($_SESSION['acesso'] == true) {
                                 while ($reg = mysqli_fetch_assoc($res)) {
                                     $imagensAtor[$i] = $reg['caminho'];
                                     $imagensCodigo[$i] = $reg['codigo'];
+
+                                    $_SESSION['caminho_imagem'][$i] = $reg['caminho'];
+                                    $_SESSION['codigo_imagem'][$i] = $reg['codigo'];
+
                                     $i++;
                                 }
                             }else{
                                 echo "Algo deu errado ao executar a query!";
-                            } ?>
+                            } ?> 
 
                             <!-- EXIBIR INFORMÇÕES DO ATRO/ATRIZ NO FORMULÁRIO -->
                             <form name="fmAtores" method="post" action="editaAtorAdm.php" enctype="multipart/form-data" onsubmit="return validaCampos()">
@@ -170,25 +176,80 @@ if ($_SESSION['acesso'] == true) {
                             </form>
 
                             <?php
+                        
+                        }elseif(isset($_POST['btnSubmitAtores'])) {
+                            /*
+                            $_SESSION['caminho_imagem'][$i] = $reg['caminho'];
+                            $_SESSION['codigo_imagem'][$i] = $reg['codigo'];
+                            */
+                            $codigoAtor = $_SESSION['codigo_ator'];
+                            unset($_SESSION['codigo_ator']);
+
+                            $nomeImagem = array();
+                            $codigoImagem = array();
+
+                            for ($i=0; $i < 3; $i++);
+
+                            $nomeImagem[$i] = $_FILES['fileImagemAtor'.$i]['name'];
+                            $codigoImagem[$i] = "";
+
+                            if ($nomeImgem[$i] <> "" && isset($_FILES['fileImagemAtor'.$i]['name'])) {
+                                $nomeImgem[$i] = enviaImagem($_FILES['fileImagemAtor'.$i]['name'], "atores", 
+                                $_FILES['fileImagemAtor'.$i]['tmp_name']);
+                            }elseif( isset($_SESSION['caminho_imagem'][$i])){
+                                $nomeImagem[$i] = $_SESSION['caminho_imagem'][$i];
+                            }
+
+                            if( isset($_SESSION['codigo_imagem'][$i])){
+                                $codigoImagem[$i] = $_SESSION['codigo_imagem'][$i];
+                            }
+                            /* essa verificção é para o caso do usuário substituir a imagem que já está salva */
+                            if (isset($_SESSION['caminho_imagem'][$i]) && isset($nomeImagem[$i])) {
+                                /* verifica se a imagem atual ediferente da iamgem que foi enviada no input */
+                                if ($_SESSION['caminho_imagem'][$i] <> $nomeImagem[$i]) {
+                                    excluiUmaImagem($codigoImagem[$i], 'atores');
+                                }
+                            }
+
+                            if (isset($_POST['chExcluir'.$i])) {
+                                excluiUmaImage($codigoImagem[$i], "atores");
+                                $nomeImagem[$i] = "";
+                                /* O NOME DA IMAGEM É ENVIADO COMO VAIO, POIS DESSA FORMA, A PROCEDURE ENTENDE
+                                QUE É PARA EXCLUIR A IMAGEM DA TABELA DE IAMGENS */
+                            }
+                        } /* FIM DO FOR */
+
+                        if (isset($_session['caminho_imagem']) || $_SESSION['codigo_imagem']) {
+                            unset($_SESSION['caminho_imagem']);
+                            unset($_SESSION['codigo_imagem']);
+                        }
+
+                        $nomeAtor = $_POST['txtNome'];
+                        $paisAtor = $_POST['selPais'];
+                        $biografiaAtor = $_POST['txtBiografia'];
+
+                        $sql = "CALL sp_edita_ator('$codigoAtor','$nomeAtor','$paisAtor','$biografiaAtor','$nomeImage[0]',
+                        '$codigoImage[0]','$nomeImage[1]','$codigoImage[1]','$nomeImage[2]','$codigoImage[2]',@saida,
+                        @saida_rotulo)";
+
+                        executaQuery($sql, 'atoresAdm.php');
                         }else{
-    
+
                         }
                         ?>
                 </div>
             </div>
         </main>
 
-        <?php if (isset($con)) {
-            mysqli_close($con);
-        } ?>
+        <?php if (isset($con)) {mysqli_close($con);} ?>
     </body>
 
 <script src="https://kit.fontawesome.com/4bb29d1df9.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
 </script>
-
-<?php
-} else { ?>
+                    
+<?php 
+    }else{ ?>
     <meta http-equiv="refresh" content=0;url="login.php">
     <?php
     }
