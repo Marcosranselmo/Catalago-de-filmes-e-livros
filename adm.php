@@ -38,7 +38,7 @@
             </div>
             <div class="col-md-3 col-sm-6 opcoes text-center">
                 <i class="fa-solid fa-user-tie"></i>
-                <a href="administracao/diretores.php">
+                <a href="administracao/diretoresAdm.php">
                     <p>Diretores</p>
                 </a>
             </div>

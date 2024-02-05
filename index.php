@@ -19,7 +19,7 @@
     <h2 class="text-center mt-5 mb-5">Filmes em Destaque</h2>
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-lg-4 col-sm-6">
+            <div class="col-md-3 col-lg-3 col-sm-3">
                 <div class="card">
                     <img src="imagens/imgatores/ator1.jpg" alt="" class="card-img-top">
                     <div class="card-body">
@@ -32,7 +32,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-4 col-sm-6">
+            <div class="col-md-3 col-lg-3 col-sm-3">
                 <div class="card">
                     <img src="imagens/imgatores/ator2.jpg" alt="" class="card-img-top">
                     <div class="card-body">
@@ -45,7 +45,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-4 col-sm-6">
+            <div class="col-md-3 col-lg-3 col-sm-3">
                 <div class="card">
                     <img src="imagens/imgatores/ator3.jpg" alt="" class="card-img-top">
                     <div class="card-body">
@@ -58,7 +58,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-4 col-sm-6">
+            <div class="col-md-3 col-lg-3 col-sm-3">
                 <div class="card">
                     <img src="imagens/imgatores/ator4.jpg" alt="" class="card-img-top">
                     <div class="card-body">
@@ -71,7 +71,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-4 col-sm-6">
+            <div class="col-md-3 col-lg-3 col-sm-3">
                 <div class="card">
                     <img src="imagens/imgatores/ator5.jpg" alt="" class="card-img-top">
                     <div class="card-body">
@@ -84,7 +84,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-4 col-sm-6">
+            <div class="col-md-3 col-lg-3 col-sm-3">
                 <div class="card">
                     <img src="imagens/imgatores/ator6.jpg" alt="" class="card-img-top">
                     <div class="card-body">

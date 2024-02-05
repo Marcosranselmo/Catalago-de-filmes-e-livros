@@ -16,19 +16,19 @@ if ($_SESSION['acesso'] == true) {
         <title>Cadastro Atores</title>
         <script type="text/javascript">
             function validaCampos() {
-                if (document.fmAtores.txtNome.value == "") {
+                if (document.fmDiretores.txtNome.value == "") {
                     alert("Preencha o nome!");
-                    document.fmAtores.txtNome.focus();
+                    document.fmDiretores.txtNome.focus();
                     return false;
                 }
-                if (document.fmAtores.txtBiografia.value == "") {
+                if (document.fmDiretores.txtBiografia.value == "") {
                     alert("Preencha o campo Biografia!");
-                    document.fmAtores.txtBiografia.focus();
+                    document.fmDiretores.txtBiografia.focus();
                     return false;
                 }
-                if (document.fmAtores.selPais.value == 0) {
+                if (document.fmDiretores.selPais.value == 0) {
                     alert("Escolha um País!");
-                    document.fmAtores.selPais.focus();
+                    document.fmDiretores.selPais.focus();
                     return false;
                 }
             }
@@ -42,50 +42,50 @@ if ($_SESSION['acesso'] == true) {
 
         <!-- PRINCIPAL -->
         <main class="container">
-            <h3 class="text-center mt-5">Edita Atores - Administração</h3><br>
+            <h3 class="text-center mt-5">Edita Diretores - Administração</h3><br>
             <div class="row-auto d-flex">
                 <div class="col-md-3 col-sm-3 mx-3">
                     <?php include_once "menuAdm.html" ?>
                 </div>
                 <div class="col-md-9 col-sm-9">
                     <?php 
-                        if (isset($_GET['excluirAtor'])) {
-                            $codigoAtor = $_GET['excluirAtor'];
-                            // excluir as imagens do ator
-                            excluiTodasImagens($codigoAtor, 'atores');
+                        if (isset($_GET['excluirDiretor'])) {
+                            $codigoDiretor = $_GET['excluirDiretor'];
+                            // excluir as imagens do diretor
+                            excluiTodasImagens($codigoDiretor, 'diretores');
 
-                            $sql = "CALL sp_deleta_atores($codigoAtor, @saida, @saida_rotulo)";
-                            executaQuery($sql, "atoresAdm.php");
+                            $sql = "CALL sp_deleta_diretores($codigoDiretor, @saida, @saida_rotulo)";
+                            executaQuery($sql, "diretoresAdm.php");
 
-                        }elseif(isset($_GET['editaAtor'])) {
+                        }elseif(isset($_GET['editaDiretor'])) {
 
                             /* CRIAÇÃO DE ARRAYS DE SESSÃO */
                             $_SESSION['caminho_imagem'] = array();
                             $_SESSION['codigo_imagem'] = array();
    
                             /* CARREGAR AS INFORMAÇÕES DO(A) ATOR/ATRI */
-                            $codigoAtor = $_GET['editaAtor'];
-                            $_SESSION['codigo_ator'] = $codigoAtor;
+                            $codigoDiretor = $_GET['editaDiretor'];
+                            $_SESSION['codigo_diretor'] = $codigoDiretor;
     
-                            $sql = "SELECT * FROM vw_retorna_atores WHERE codigo_ator = $codigoAtor";
+                            $sql = "SELECT * FROM vw_retorna_diretores WHERE codigo_diretor = $codigoDiretor";
                             if ($res = mysqli_query($con, $sql)) {
                                 $reg = mysqli_fetch_assoc($res);
-                                $nomeAtor = $reg['nome_ator'];
-                                $paisAtor = $reg['pais_ator'];
-                                $biografiaAtor = $reg['biografia_ator'];
+                                $nomeDiretor = $reg['nome_diretor'];
+                                $paisDiretor = $reg['pais_diretor'];
+                                $biografiaDiretor = $reg['biografia_diretor'];
                             }else{
                             
                                 echo "Algo deu errado ao executar a query!";
                             }
                         
 
-                            $imagnsAtor = array();
+                            $imagnsDiretor = array();
                             $imagensCodigo = array();
                             $i = 0;
-                            $sql = "SELECT * FROM imagens WHERE atores_codigo = $codigoAtor";
+                            $sql = "SELECT * FROM imagens WHERE diretores_codigo = $codigoDiretor";
                             if ($res = mysqli_query($con, $sql)) {
                                 while ($reg = mysqli_fetch_assoc($res)) {
-                                    $imagensAtor[$i] = $reg['caminho'];
+                                    $imagensDiretor[$i] = $reg['caminho'];
                                     $imagensCodigo[$i] = $reg['codigo'];
 
                                     $_SESSION['caminho_imagem'][$i] = $reg['caminho'];
@@ -98,9 +98,9 @@ if ($_SESSION['acesso'] == true) {
                             } ?> 
 
                             <!-- EXIBIR INFORMÇÕES DO ATRO/ATRIZ NO FORMULÁRIO -->
-                            <form name="fmAtores" method="post" action="editaAtorAdm.php" enctype="multipart/form-data" onsubmit="return validaCampos()">
+                            <form name="fmDiretores" method="post" action="editaDiretorAdm.php" enctype="multipart/form-data" onsubmit="return validaCampos()">
                                 <label>Nome:</label>
-                                <input type="text" name="txtNome" class="form-control mb-2" maxlength="70" value="<?php echo $nomeAtor; ?>">
+                                <input type="text" name="txtNome" class="form-control mb-2" maxlength="70" value="<?php echo $nomeDiretor; ?>">
                                 <label>Páis:</label>
                                 <select name="selPais" class="form-control mb-2">
                                     <option value="0">Selecione o País</option>
@@ -114,7 +114,7 @@ if ($_SESSION['acesso'] == true) {
                                             $nomePais[$i] = $reg['nome_pais'];
                                             $codigoPais[$i] = $reg['codigo_pais'];
                                             ?>
-                                            <option value="<?php echo $codigoPais[$i]; ?>" <?php if ($codigoPais[$i] == $paisAtor)
+                                            <option value="<?php echo $codigoPais[$i]; ?>" <?php if ($codigoPais[$i] == $paisDiretor)
                                             {
                                                 echo "selected";
                                             } ?> ><?php echo $nomePais[$i]; ?></option>
@@ -125,12 +125,12 @@ if ($_SESSION['acesso'] == true) {
                                     ?>
                                 </select>
 
-                                <label>Biografia do Ator:</label>
+                                <label>Biografia do Diretor:</label>
                                 <textarea name="txtBiografia" maxlength="500" placeholder="Digite descrição aqui" cols="87" rows="4" class="form-control mb-2">
-                                    <?php echo $biografiaAtor; ?>
+                                    <?php echo $biografiaDiretor; ?>
                                 </textarea>
 
-                                <label class="text-center">Fotos do Ator</label>
+                                <label class="text-center">Fotos do Diretor</label>
                                 <div class="row text-center align-items-center"> 
                                     <div class="col-md-3 mt-4 mb-4"><h5><strong>Imagem</strong></h5></div>
                                     <div class="col-md-6"><h5><strong>Carregar nova imagem</strong></h5></div>
@@ -139,18 +139,18 @@ if ($_SESSION['acesso'] == true) {
                                     for ($i=0; $i < 3; $i++) { ?>
                                         <div class="col-md-3">
                                         <?php
-                                        if (isset($imagensAtor[$i])) { 
+                                        if (isset($imagensDiretor[$i])) { 
                                             ?>
-                                            <img src="../imagens/atores/<?php echo $imagensAtor[$i]; ?>" title="<?php echo $imagensAtor[$i]; ?>" style="max-width: 100px; padding: 5px;">
+                                            <img src="../imagens/diretores/<?php echo $imagensDiretor[$i]; ?>" title="<?php echo $imagensDiretor[$i]; ?>" style="max-width: 100px; padding: 5px;">
                                             <?php
                                         }else{
                                             ?>
-                                            <img src="../imagens/atores/sem_imagem.jpg" title="sem_imagem.jpg" style="max-width: 100px; padding: 5px;">
+                                            <img src="../imagens/diretores/sem_imagem.jpg" title="sem_imagem.jpg" style="max-width: 100px; padding: 5px;">
                                         <?php
                                         } ?>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="file" name="<?php echo "fileImagemAtor".$i ?>" 
+                                            <input type="file" name="<?php echo "fileImagemDiretor".$i ?>" 
                                             class="btn btn-success w-100" accept="image/png, imagem/jpeg">
                                         </div>
                                         <div class="col-md-3">
@@ -161,41 +161,41 @@ if ($_SESSION['acesso'] == true) {
                                     ?>
 
                                 </div> 
-                                <button type="submit" name="btnSubmitAtores" class="btn btn-primary w-100 mb-1">Salvar Alteraçoes</button>
+                                <button type="submit" name="btnSubmitDiretores" class="btn btn-primary w-100 mb-1">Salvar Alteraçoes</button>
                                 <br>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <a href="atoresAdm.php" class="btn btn-success w-100 mb-4" 
+                                        <a href="diretoresAdm.php" class="btn btn-success w-100 mb-4" 
                                         >Voltar</a>
                                     </div>
                                     <div class="col-md-6">
-                                        <a href="editaAtorAdm.php?excluirAtor=<?php echo $codigoAtor; ?>" class="btn btn-danger w-100 mb-4" 
-                                        onclick="return confirm('Tem certeza que deseja Editar este(a) ator(a)?')">Excluir</a>
+                                        <a href="editaDiretorAdm.php?excluirDiretor=<?php echo $codigoDiretor; ?>" class="btn btn-danger w-100 mb-4" 
+                                        onclick="return confirm('Tem certeza que deseja Editar este(a) Diretor(a)?')">Excluir</a>
                                     </div>
                                 </div>
                             </form>
 
                             <?php
                         
-                        }elseif(isset($_POST['btnSubmitAtores'])) {
+                        }elseif(isset($_POST['btnSubmitDiretores'])) {
                             /*
                             $_SESSION['caminho_imagem'][$i] = $reg['caminho'];
                             $_SESSION['codigo_imagem'][$i] = $reg['codigo'];
                             */
-                            $codigoAtor = $_SESSION['codigo_ator'];
-                            unset($_SESSION['codigo_ator']);
+                            $codigoDiretor = $_SESSION['codigo_diretor'];
+                            unset($_SESSION['codigo_diretor']);
 
                             $nomeImagem = array();
                             $codigoImagem = array();
 
                             for ($i=0; $i < 3; $i++) {
 
-                            $nomeImagem[$i] = $_FILES['fileImagemAtor'.$i]['name'];
+                            $nomeImagem[$i] = $_FILES['fileImagemDiretor'.$i]['name'];
                             $codigoImagem[$i] = "";
 
-                            if ($nomeImagem[$i] <> "" && isset($_FILES['fileImagemAtor'.$i]['name'])) {
-                                $nomeImagem[$i] = enviaImagem($_FILES['fileImagemAtor'.$i]['name'], "atores", 
-                                $_FILES['fileImagemAtor'.$i]['tmp_name']);
+                            if ($nomeImagem[$i] <> "" && isset($_FILES['fileImagemDiretor'.$i]['name'])) {
+                                $nomeImagem[$i] = enviaImagem($_FILES['fileImagemDiretor'.$i]['name'], "diretores", 
+                                $_FILES['fileImagemDiretor'.$i]['tmp_name']);
                             }elseif( isset($_SESSION['caminho_imagem'][$i])){
                                 $nomeImagem[$i] = $_SESSION['caminho_imagem'][$i];
                             }
@@ -207,12 +207,12 @@ if ($_SESSION['acesso'] == true) {
                             if (isset($_SESSION['caminho_imagem'][$i]) && isset($nomeImagem[$i])) {
                                 /* verifica se a imagem atual ediferente da iamgem que foi enviada no input */
                                 if ($_SESSION['caminho_imagem'][$i] <> $nomeImagem[$i]) {
-                                    excluiUmaImagem($codigoImagem[$i], 'atores');
+                                    excluiUmaImagem($codigoImagem[$i], 'diretores');
                                 }
                             }
 
                             if (isset($_POST['chExcluir'.$i])) {
-                                excluiUmaImagem($codigoImagem[$i], "atores");
+                                excluiUmaImagem($codigoImagem[$i], "diretores");
                                 $nomeImagem[$i] = "";
                                 /* O NOME DA IMAGEM É ENVIADO COMO VAIO, POIS DESSA FORMA, A PROCEDURE ENTENDE
                                 QUE É PARA EXCLUIR A IMAGEM DA TABELA DE IAMGENS */
@@ -224,15 +224,15 @@ if ($_SESSION['acesso'] == true) {
                             unset($_SESSION['codigo_imagem']);
                         }
 
-                        $nomeAtor = $_POST['txtNome'];
-                        $paisAtor = $_POST['selPais'];
-                        $biografiaAtor = $_POST['txtBiografia'];
+                        $nomeDiretor = $_POST['txtNome'];
+                        $paisDiretor = $_POST['selPais'];
+                        $biografiaDiretor = $_POST['txtBiografia'];
 
-                        $sql = "CALL sp_edita_ator('$codigoAtor','$nomeAtor','$paisAtor','$biografiaAtor','$nomeImagem[0]',
+                        $sql = "CALL sp_edita_diretor('$codigoDiretor','$nomeDiretor','$paisDiretor','$biografiaDiretor','$nomeImagem[0]',
                         '$codigoImagem[0]','$nomeImagem[1]','$codigoImagem[1]','$nomeImagem[2]','$codigoImagem[2]',@saida,
                         @saida_rotulo)";
 
-                        executaQuery($sql, 'atoresAdm.php');
+                        executaQuery($sql, 'diretoresAdm.php');
                         }else{
 
                         }

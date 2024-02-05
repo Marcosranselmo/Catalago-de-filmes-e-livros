@@ -96,8 +96,6 @@ function excluirImagens($codigo, $alvo)
     if (isset($con)) { mysqli_close($con); }
 }
 
-
-
 function excluiTodasImagens($codigo, $alvo){
     include "conexao.php";
 
@@ -133,17 +131,14 @@ function excluiTodasImagens($codigo, $alvo){
     if (isset($con)) { mysqli_close($con); }
 }
 
-
-
-
-function excluiUmaImagens($codigo, $alvo){
+function excluiUmaImagem($codigo, $alvo){
     include "conexao.php";
 
     //SELECT * FROM imagens WHERE atores_codigo = 3 ex.
-    $sql = "SELECT * FROM imagens WHERE codigo = $codigo";
+    $sql = "SELECT * FROM imagens WHERE codigo = ".$codigo;
     if ($res = mysqli_query($con, $sql)) {
             while ($reg = mysqli_fetch_assoc($res)) {
-            $delete = unlink("../imagens/".$alvo."/".$reg["caminho"]);
+            $delete = unlink("../imagens/".$alvo."/".$reg['caminho']);
             if (!$delete) {
                 ?>
                 <div class="alert danger" role="alert">
@@ -163,8 +158,5 @@ function excluiUmaImagens($codigo, $alvo){
     }
     if (isset($con)) { mysqli_close($con); }
 }
-
-
-
 
 ?>
