@@ -11,9 +11,9 @@ if ($_SESSION['acesso'] == true) {
     <?php
     include_once "header.html";
     include_once "../mais/conexao.php";
+    include_once "../mais/funcoes.php";
     ?>
     <title>Filmes</title>
-
 </head>
 
 <body class="adm">
@@ -91,13 +91,101 @@ if ($_SESSION['acesso'] == true) {
 
                         </div>
                         <div class="tab-pane fade" id="tabDiretores" role="tabpanel" aria-labelledby="linkDiretores">
-                            diretores
+                            <div class="row">    
+                                <?php 
+                                /* $sql = "SELECT codigo_diretor, nome_diretor, caminho_imagem, FROM vw_retorna_diretores"); */
+                                    $sql = "SELECT * FROM vw_retorna_diretores";
+                                    if ($res = mysqli_query($con, $sql)){
+                                        $i = 0;
+                                        while($reg = mysqli_fetch_assoc($res)) {
+                                            ?>
+                                            <div class="col-md-3 itensCadastrados text-center">
+                                                <img src="../imagens/diretores/<?php
+                                                    if($reg['caminho_imagem'] == "" || $reg['caminho_imagem'] == 
+                                                        NULL) {
+                                                        echo "sem_imagem.jpg";
+                                                    }else{
+                                                        echo $reg['caminho_imagem'];
+                                                    }
+                                                ?>" class="img-responsive img-thumbnail mb-2">
+                                                <h6><?php echo $reg['nome_diretor'] ?></h6>
+                                                <input type="checkbox" name="chDiretor_<?php echo $i ?>" value="
+                                                <?php echo $reg['codigo_diretor']; ?>"> 
+                                            </div>
+                                            <?php
+                                            $i++;
+                                        }
+                                    }else{
+                                        ?>
+                                        <div class="alert alert-danger" role="alert">
+                                            Algo deu errado ao executar a query!
+                                        </div>
+                                        <?php
+                                    }
+                                ?>
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="tabAtores" role="tabpanel" aria-labelledby="linkAtores">
-                            atores
+                            <div class="row">    
+                                <?php 
+                                /* $sql = "SELECT codigo_diretor, nome_diretor, caminho_imagem, FROM vw_retorna_diretores"); */
+                                    $sql = "SELECT * FROM vw_retorna_atores";
+                                    if ($res = mysqli_query($con, $sql)){
+                                        $i = 0;
+                                        while($reg = mysqli_fetch_assoc($res)) {
+                                            ?>
+                                            <div class="col-md-3 itensCadastrados text-center">
+                                                <img src="../imagens/atores/<?php
+                                                    if($reg['caminho_imagem'] == "" || $reg['caminho_imagem'] == 
+                                                        NULL) {
+                                                        echo "sem_imagem.jpg";
+                                                    }else{
+                                                        echo $reg['caminho_imagem'];
+                                                    }
+                                                ?>" class="img-responsive img-thumbnail mb-2">
+                                                <h6><?php echo $reg['nome_ator'] ?></h6>
+                                                <input type="checkbox" name="chAtor_<?php echo $i ?>" value="
+                                                <?php echo $reg['codigo_ator']; ?>"> 
+                                            </div>
+                                            <?php
+                                            $i++;
+                                        }
+                                    }else{
+                                        ?>
+                                        <div class="alert alert-danger" role="alert">
+                                            Algo deu errado ao executar a query!
+                                        </div>
+                                        <?php
+                                    }
+                                ?>
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="tabCategorias" role="tabpanel" aria-labelledby="linkCategorias">
-                            categorias
+                            <div class="row">    
+                                <?php 
+                                /* $sql = "SELECT codigo_diretor, nome_diretor, caminho_imagem, FROM vw_retorna_diretores"); */
+                                    $sql = "SELECT Codigo_Categoria, Nome_Categoria FROM vw_retorna_categorias";
+                                    if ($res = mysqli_query($con, $sql)){
+                                        $i = 0;
+                                        while($reg = mysqli_fetch_assoc($res)) {
+                                            ?>
+                                            <div class="col-md-3 itensCadastrados text-center">
+                                                <h6><?php echo $reg['Nome_Categoria']; ?></h6>
+                                                <input type="checkbox" name="chCategoria_<?php echo $i?>" value="
+                                                <?php echo $reg['Codigo_Categoria']; ?>"> 
+                                            </div>
+                                            <?php
+                                            $i++;
+                                        }
+                                    }else{
+                                        ?>
+                                        <div class="alert alert-danger" role="alert">
+                                            Algo deu errado ao executar a query!
+                                        </div>
+                                        <?php
+                                    }
+                                ?>
+                            </div>
                         </div>
                     </div>
                 </form>
