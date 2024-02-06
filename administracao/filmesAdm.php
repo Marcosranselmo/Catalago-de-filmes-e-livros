@@ -123,7 +123,7 @@ if ($_SESSION['acesso'] == true) {
                                                 img-responsive img-thumbnail">
                                                 <h4><?php echo $nomeDiretor[$i]; ?></h4>
                                                 <input type="checkbox" name="<?php 'chDiretor_'.$i; ?>" value="<?php echo
-                                                $codigoDiretor[$i]; ?>" class="form-control">
+                                                $codigoDiretor[$i]; ?>">
                                             </div>
 
                                             <?php
@@ -174,7 +174,7 @@ if ($_SESSION['acesso'] == true) {
                                                 img-responsive img-thumbnail">
                                                 <h4><?php echo $nomeAtor[$i]; ?></h4>
                                                 <input type="checkbox" name="<?php 'chAtor_'.$i; ?>" value="<?php echo
-                                                $codigoAtor[$i]; ?>" class="form-control">
+                                                $codigoAtor[$i]; ?>">
                                             </div>
 
                                             <?php
@@ -195,34 +195,37 @@ if ($_SESSION['acesso'] == true) {
                                 ?>
                             </div>
                         </div>
+                        <!----------- FIM DA EXIBIÇÃO DOS ATORES/ATRIZES --------------->
 
-
-
-
-
+                        <!----------- EXIBIÇÃO DOS CATEGORIAS ------------------>
                         <div class="tab-pane fade" id="tabCategorias" role="tabpanel" aria-labelledby="linkCategorias">
+                        <h3>Selecione a categoria do filme</h3>
                             <div class="row">    
                                 <?php 
-                                /* $sql = "SELECT codigo_diretor, nome_diretor, caminho_imagem, FROM vw_retorna_diretores"); */
-                                    $sql = "SELECT Codigo_Categoria, Nome_Categoria FROM vw_retorna_categorias";
-                                    if ($res = mysqli_query($con, $sql)){
+                                    $sql = "SELECT * FROM vw_retorna_categorias";
+                                    if ($res = mysqli_query($con, $sql)) {
+
+                                        $nomeCategoria = array();
+                                        $codigoCategoria = array();
                                         $i = 0;
+                                     
                                         while($reg = mysqli_fetch_assoc($res)) {
+                                            $nomeCategoria[$i] = $reg['Nome_Categoria'];
+                                            $codigoCategoria[$i] = $reg['Codigo_Categoria'];
+
                                             ?>
                                             <div class="col-md-3 itensCadastrados text-center">
-                                                <h6><?php echo $reg['Nome_Categoria']; ?></h6>
-                                                <input type="checkbox" name="chCategoria_<?php echo $i?>" value="
-                                                <?php echo $reg['Codigo_Categoria']; ?>"> 
+                                                <h4><?php echo $nomeCategoria[$i]; ?></h4>
+                                                <input type="checkbox" name="<?php 'chCategoria_'.$i; ?>" value="<?php echo
+                                                $codigoCategoria[$i]; ?>">
                                             </div>
+
                                             <?php
                                             $i++;
                                         }
-                                        $_SESSION['maxCategorias'] = $i;
+                                        $_SESSION['maxCategoria'] = $i;
                                     }else{
-                                      
-                                           echo "Algo deu errado ao executar a query!";
-                                      
-                                      
+                                        echo "Erro ao executr a query!";
                                     }
                                 ?>
                             </div>
