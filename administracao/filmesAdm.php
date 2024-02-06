@@ -23,7 +23,7 @@ if ($_SESSION['acesso'] == true) {
 
     <!-- PRINCIPAL -->
     <main class="container mt-5">
-        <h3 class="text-center">Cadastro de Filmes - Administração</h3>
+        <h3 class="text-center">Filmes - Administração</h3>
         <div class="row gy-4 mt-4">
             <!-- MENU LATERAL -->
             <div class="col-md-3 col-sm-3">
@@ -51,10 +51,12 @@ if ($_SESSION['acesso'] == true) {
                     </li>
                 </ul>
 
-                <form name="fmFilmes" method="post" action="cadastroFilmesadm.php" enctype="multipart/form-data"
-                onsubmit="return validaCampos()">
+                <h3>Cadastrar novo filme</h3>
+                <form name="fmFilmes" method="post" action="cadastraFilmeAdm.php" enctype="multipart/form-data"
+                    onsubmit="return validaCampos()">
                     <div class="tab-content" id="meusConteudos">
 
+                        <!--------- INFORMAÇÕES DO FILME --------->
                         <div class="tab-pane fade show-active" id="tabCadastro" role="tabpanel" aria-labelledby="linkCadastro">
                             <label>Título do Filme</label>
                             <input type="text" name="txtTitulo" class="form-control">
@@ -90,76 +92,114 @@ if ($_SESSION['acesso'] == true) {
                             <input type="file" name="fileImagemDiretor3" class="btn btn-success w-100 mb-2" accept="image/png, image/jpg">
 
                         </div>
+                        <!--------- FIM DA ABA INFORMAÇÕES DO FILME --------->
+
+                        <!--------- EXIBIÇÃO DOS DIRETORES ------------------>
                         <div class="tab-pane fade" id="tabDiretores" role="tabpanel" aria-labelledby="linkDiretores">
+                        <h3>Selecione Diretor do Filme</h3>
                             <div class="row">    
                                 <?php 
-                                /* $sql = "SELECT codigo_diretor, nome_diretor, caminho_imagem, FROM vw_retorna_diretores"); */
-                                    $sql = "SELECT * FROM vw_retorna_diretores";
-                                    if ($res = mysqli_query($con, $sql)){
+                                    $sql = "SELECT * FROM vw_retorna_diretores ORDER BY nome_diretor";
+                                    if ($res = mysqli_query($con, $sql)) {
+
+                                        $nomeDiretor = array();
+                                        $codigoDiretor = array();
+                                        $imagemDiretor = array();
                                         $i = 0;
+                                        $linhas = 0;
+                                     
                                         while($reg = mysqli_fetch_assoc($res)) {
+                                            $linhas = mysqli_affected_rows($con);
+                                            $nomeDiretor[$i] = $reg['nome_diretor'];
+                                            $codigoDiretor[$i] = $reg['codigo_diretor'];
+                                            $imagemDiretor[$i] = $reg['caminho_imagem'];
+
+                                            if (!isset($imagemDiretor[$i])) {
+                                                $imagemDiretor[$i] = "sem_imagem.jpg";
+                                            }
                                             ?>
                                             <div class="col-md-3 itensCadastrados text-center">
-                                                <img src="../imagens/diretores/<?php
-                                                    if($reg['caminho_imagem'] == "" || $reg['caminho_imagem'] == 
-                                                        NULL) {
-                                                        echo "sem_imagem.jpg";
-                                                    }else{
-                                                        echo $reg['caminho_imagem'];
-                                                    }
-                                                ?>" class="img-responsive img-thumbnail mb-2">
-                                                <h6><?php echo $reg['nome_diretor'] ?></h6>
-                                                <input type="checkbox" name="chDiretor_<?php echo $i ?>" value="
-                                                <?php echo $reg['codigo_diretor']; ?>"> 
+                                                <img src="../imagens/diretores/<?php echo $imagemDiretor[$i]; ?>" class="
+                                                img-responsive img-thumbnail">
+                                                <h4><?php echo $nomeDiretor[$i]; ?></h4>
+                                                <input type="checkbox" name="<?php 'chDiretor_'.$i; ?>" value="<?php echo
+                                                $codigoDiretor[$i]; ?>" class="form-control">
                                             </div>
+
                                             <?php
                                             $i++;
                                         }
-                                    }else{
+                                        $_SESSION['maxDiretores'] = $i;
+                                    if ($linhas == 0) {
                                         ?>
+                              
                                         <div class="alert alert-danger" role="alert">
-                                            Algo deu errado ao executar a query!
+                                            <h4>Nenhum diretor cadastrado!</h4>
                                         </div>
                                         <?php
                                     }
+                                }else{
+                                    echo 'Erro ao executar a query!';
+                                }
                                 ?>
                             </div>
                         </div>
+                        <!----------- FIM DA EXIBIÇÃO DOS DIRETORES --------------->
+
+                        <!----------- EXIBIÇÃO DOS ATORES/ATRIZES ------------------>
                         <div class="tab-pane fade" id="tabAtores" role="tabpanel" aria-labelledby="linkAtores">
+                        <h3>Selecione os Atores(a) do Filme</h3>
                             <div class="row">    
                                 <?php 
-                                /* $sql = "SELECT codigo_diretor, nome_diretor, caminho_imagem, FROM vw_retorna_diretores"); */
                                     $sql = "SELECT * FROM vw_retorna_atores";
-                                    if ($res = mysqli_query($con, $sql)){
+                                    if ($res = mysqli_query($con, $sql)) {
+
+                                        $nomeAtor = array();
+                                        $codigoAtor = array();
+                                        $imagemAtor = array();
                                         $i = 0;
+                                     
                                         while($reg = mysqli_fetch_assoc($res)) {
+                                            $linhas = mysqli_affected_rows($con);
+                                            $nomeAtor[$i] = $reg['nome_ator'];
+                                            $codigoAtor[$i] = $reg['codigo_ator'];
+                                            $imagemAtor[$i] = $reg['caminho_imagem'];
+
+                                            if (!isset($imagemAtor[$i])) {
+                                                $imagemAtor[$i] = "sem_imagem.jpg";
+                                            }
                                             ?>
                                             <div class="col-md-3 itensCadastrados text-center">
-                                                <img src="../imagens/atores/<?php
-                                                    if($reg['caminho_imagem'] == "" || $reg['caminho_imagem'] == 
-                                                        NULL) {
-                                                        echo "sem_imagem.jpg";
-                                                    }else{
-                                                        echo $reg['caminho_imagem'];
-                                                    }
-                                                ?>" class="img-responsive img-thumbnail mb-2">
-                                                <h6><?php echo $reg['nome_ator'] ?></h6>
-                                                <input type="checkbox" name="chAtor_<?php echo $i ?>" value="
-                                                <?php echo $reg['codigo_ator']; ?>"> 
+                                                <img src="../imagens/atores/<?php echo $imagemAtor[$i]; ?>" class="
+                                                img-responsive img-thumbnail">
+                                                <h4><?php echo $nomeAtor[$i]; ?></h4>
+                                                <input type="checkbox" name="<?php 'chAtor_'.$i; ?>" value="<?php echo
+                                                $codigoAtor[$i]; ?>" class="form-control">
                                             </div>
+
                                             <?php
                                             $i++;
                                         }
-                                    }else{
+                                        $_SESSION['maxAtores'] = $i;
+                                    if ($linhas == 0) {
                                         ?>
+                              
                                         <div class="alert alert-danger" role="alert">
-                                            Algo deu errado ao executar a query!
+                                            <h4>Nenhum diretor cadastrado!</h4>
                                         </div>
                                         <?php
                                     }
+                                }else{
+                                    echo 'Erro ao executar a query!';
+                                }
                                 ?>
                             </div>
                         </div>
+
+
+
+
+
                         <div class="tab-pane fade" id="tabCategorias" role="tabpanel" aria-labelledby="linkCategorias">
                             <div class="row">    
                                 <?php 
@@ -177,17 +217,19 @@ if ($_SESSION['acesso'] == true) {
                                             <?php
                                             $i++;
                                         }
+                                        $_SESSION['maxCategorias'] = $i;
                                     }else{
-                                        ?>
-                                        <div class="alert alert-danger" role="alert">
-                                            Algo deu errado ao executar a query!
-                                        </div>
-                                        <?php
+                                      
+                                           echo "Algo deu errado ao executar a query!";
+                                      
+                                      
                                     }
                                 ?>
                             </div>
                         </div>
+                    <!------------------ FIM DA EXIBIÇÃO DAS CATEGORIAS ------------------>
                     </div>
+                    <button type="submit" name="btnSubmitFilme" class="btn btn-primary w-100 mt-3 mb-5">Cadastrar Filme</button>
                 </form>
             </div>
         </div>

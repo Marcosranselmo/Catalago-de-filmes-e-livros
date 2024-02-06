@@ -51,29 +51,19 @@ if ($_SESSION['acesso'] == true) {
 
                     <?php
                     if (isset($_POST['btnSubmitDiretores'])) {
+                        $nomeImagem = array();
 
-                        $nomeImagem1 = $_FILES['fileImagemDiretor1']['name'];
-                        $nomeImagem2 = $_FILES['fileImagemDiretor2']['name'];
-                        $nomeImagem3 = $_FILES['fileImagemDiretor3']['name'];
+                        for ($i=0; $i < 3; $i++) {
+                            $nomeImagem[$i] = $_FILES['fileImagem'.$i]['name'];
 
-                        if ($nomeImagem1 <> "" && isset($_FILES['fileImagemDiretor1']['name'])) {
-                            $nomeImagem1 = enviaImagem($_FILES['fileImagemDiretor1']['name'], "diretores", $_FILES['fileImagemDiretor1']['tmp_name']);
-                        } else {
-                            $nomeimagem1 = "";
+                            if ($nomeImagem[$i] <> "" && isset($_FILES['fileImagem'.$i]['name'])) {
+                                $nomeImagem[$i] = enviaImagem($_FILES['fileImagem'.$i]['name'], "firetores", $_FILES['
+                                fileImagem'.$i]['tmp_name']);
+                            }else{
+                                $nomeImagem[$i] = "";
+                            }
                         }
-
-                        if ($nomeImagem2 <> "" && isset($_FILES['fileImagemDiretor2']['name'])) {
-                            $nomeImagem2 = enviaImagem($_FILES['fileImagemDiretor2']['name'], "diretores", $_FILES['fileImagemDiretor2']['tmp_name']);
-                        } else {
-                            $nomeimagem2 = "";
-                        }
-
-                        if ($nomeImagem3 <> "" && isset($_FILES['fileImagemDiretor3']['name'])) {
-                            $nomeImagem3 = enviaImagem($_FILES['fileImagemDiretor3']['name'], "diretores", $_FILES['fileImagemDiretor3']['tmp_name']);
-                        } else {
-                            $nomeimagem3 = "";
-                        }
-
+                        
                         $nome = $_POST['txtNome'];
                         $pais = $_POST['selPais'];
                         $bio = $_POST['txtBiografia'];
