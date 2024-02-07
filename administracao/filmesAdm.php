@@ -83,13 +83,17 @@ if ($_SESSION['acesso'] == true) {
                                     <input type="text" name="txtTrailer" class="form-control">
                                 </div>
                             </div>
-                            <label>Imagens do Filme</label>
-                            <textarea class="form-control" name="txtSinopse" cols="30" rows="3"></textarea>
 
+                            <label>Sinópse</label>
+                            <textarea name="txtSinopse" class="form-control" id="" cols="30" rows="5"></textarea>
+
+                            <label>Imagens do Filme</label>
+<!--                             <textarea class="form-control" name="txtSinopse" cols="30" rows="3"></textarea>
+ -->
                             <label>Fotos do Ator</label>
-                            <input type="file" name="fileImagemDiretor1" class="btn btn-success w-100 mb-2" accept="image/png, image/jpg">
-                            <input type="file" name="fileImagemDiretor2" class="btn btn-success w-100 mb-2" accept="image/png, image/jpg">
-                            <input type="file" name="fileImagemDiretor3" class="btn btn-success w-100 mb-2" accept="image/png, image/jpg">
+                            <input type="file" name="fileImagem0" class="btn btn-success w-100 mb-2" accept="image/png, imagem/jpg">
+                            <input type="file" name="fileImagem1" class="btn btn-success w-100 mb-2" accept="image/png, imagem/jpg">
+                            <input type="file" name="fileImagem2" class="btn btn-success w-100 mb-2" accept="image/png, imagem/jpg">
 
                         </div>
                         <!--------- FIM DA ABA INFORMAÇÕES DO FILME --------->

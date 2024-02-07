@@ -58,6 +58,32 @@ function executaQuery($sql, $paginaDeRetorno){
     }
 }
 
+function executaQuerySimples($sql){
+    include "conexao.php";
+    if ($res = mysqli_query($con, $sql)) {
+        $reg = mysqli_fetch_assoc($res);
+        $saida = $reg['saida'];
+        switch ($saida) {
+            case 'TUDO CERTO!':
+                $alert = 'alert-success';
+                break;
+            case 'ERRO! Algo deu errado ao vincular o filme com ofiretor.':
+                $alert = 'alert-danger';
+                break;
+        }
+    ?>
+        <div class="alert <?php echo $alert; ?>" role="alert">
+            <?php echo $saida; ?>
+        </div>
+        <?php
+    } else {
+        echo "Erro ao executar a query.";
+    }
+    if (isset($con)) {
+        mysqli_close($con);
+    }
+}
+
 // FUNÇÃO PARA EXCLUIR TODAS AS IMAGENS DE UM ATOR/DIRETOR/FILME/BANNER
 function excluirImagens($codigo, $alvo)
 {

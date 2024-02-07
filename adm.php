@@ -32,7 +32,7 @@
             </div>
             <div class="col-md-3 col-sm-6 opcoes text-center">
                 <i class="fa-solid fa-video"></i>
-                <a href="administracao/filmescadastrados.php">
+                <a href="administracao/filmesCadastradosAdm.php">
                     <p>Filmes Cadastrados</p>
                 </a>
             </div>

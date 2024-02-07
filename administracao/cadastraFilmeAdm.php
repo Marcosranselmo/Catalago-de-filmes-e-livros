@@ -64,14 +64,51 @@ if ($_SESSION['acesso'] == true) {
                             $reg = mysqli_fetch_assoc($res);
                             $saida = $reg['saida'];
                             $rotulo = $reg['saida_rotulo'];
+                            $codigoFilme = $reg['saida_rotulo'];
                             switch ($rotulo) {
-                                case 'TUDO CERTO!';
-                                    echo "Funcionou!";
+                                case 'TUDO CERTO!':
+                                    
+                                    /* VERIFICA OS DIRETORES QUE FORAM SELECIONADOS */
+                                    $maxDiretores= $_SESSION['maxDiretores'];
+                                    unset($_SESSION['maxDiretores']);
+
+                                    for ($i=0; $i < $maxDiretores; $i++) {
+                                        if (isset($_POST['chDiretor_'.$i])) {
+                                            $codigoDiretor = $_POST['chDiretor_'.$i];
+                                            $querySimples = "CALL sp_cadastra_filme_diretor($codigoFilme, $codigoDiretor, @saida)";
+                                            executaQuerySimples($querySimples);
+                                        }
+                                    }
+
+                                    /* VERIFICA OS ATORES QUE FORAM SELECIONADOS */
+                                    $maxAtores = $_SESSION['maxAtores'];
+                                    unset($_SESSION['maxAtores']);
+
+                                    for ($i=0; $i < $maxAtores; $i++) {
+                                        if (isset($_POST['chAtor_'.$i])) {
+                                            $codigoAtor = $_POST['chAtor_'.$i];
+                                            $querySimples = "CALL sp_cadastra_filme_Ator($codigoFilme, $codigoAtor, @saida)";
+                                            executaQuerySimples($querySimples);
+                                        }
+                                    }
+
+                                    /* VERIFICA AS CATEGORIAS QUE FORAM SELECIONADOS */
+                                    $maxCategorias = $_SESSION['maxCategorias'];
+                                    unset($_SESSION['maxCategorias']);
+
+                                    for ($i=0; $i < $maxCategorias; $i++) {
+                                        if (isset($_POST['chCategoria_'.$i])) {
+                                            $codigoCategoria = $_POST['chCategoria_'.$i];
+                                            $querySimples = "CALL sp_cadastra_filme_Categoria($codigoFilme, $codigoCategoria, @saida)";
+                                            executaQuerySimples($querySimples);
+                                        }
+                                    }
+
                                     break;
-                                case 'OPS!';
+                                case 'OPS!':
                                     echo "Já tem filme cadastrado!";
                                     break;
-                                case 'ERRO!';
+                                case 'ERRO!':
                                     echo "Algo deu errado!";
                                     break;
                             }
