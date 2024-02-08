@@ -38,24 +38,23 @@ if ($_SESSION['acesso'] == true) {
 
                         /* PEGANDO AS IMAGENS DO FILME */
 
+                        $titulo = $_POST['txtTitulo'];
+                        $subTitulo = $_POST['txtSubtitulo'];
+                        $anoLancamento = $_POST['selAnoLancamento'];
+                        $trailer = $_POST['txtTrailer'];
+                        $sinopse = $_POST['txtSinopse'];
+
                         $nomeImagem = array();
 
                         for ($i=0; $i < 3; $i++) {
                             $nomeImagem[$i] = $_FILES['fileImagem'.$i]['name'];
 
                             if ($nomeImagem[$i] <> "" && isset($_FILES['fileImagem'.$i]['name'])) {
-                                $nomeImagem[$i] = enviaImagem($_FILES['fileImagem'.$i]['name'], "filmes", $_FILES['
-                                fileImagem'.$i]['tmp_name']);
+                                $nomeImagem[$i] = enviaImagem($_FILES['fileImagem'.$i]['name'], "filmes", $_FILES['fileImagem'.$i]['tmp_name']);
                             }else{
                                 $nomeImagem[$i] = "";
                             }
                         }
-
-                        $titulo = $_POST['txtTitulo'];
-                        $subTitulo = $_POST['txtSubtitulo'];
-                        $anoLancamento = $_POST['selAnoLancamento'];
-                        $trailer = $_POST['txtTrailer'];
-                        $sinopse = $_POST['txtSinopse'];
 
                         $sql = "CALL sp_cadastra_filme('$titulo', '$subTitulo', '$anoLancamento', '$trailer', '$sinopse', 
                         '$nomeImagem[0]', '$nomeImagem[1]', '$nomeImagem[2]', @saida, @rotulo)";
@@ -64,14 +63,14 @@ if ($_SESSION['acesso'] == true) {
                             $reg = mysqli_fetch_assoc($res);
                             $saida = $reg['saida'];
                             $rotulo = $reg['saida_rotulo'];
-                            $codigoFilme = $reg['saida_rotulo'];
+                            $codigoFilme = $reg['codigo_filme'];
                             switch ($rotulo) {
                                 case 'TUDO CERTO!':
-                                    
+
                                     /* VERIFICA OS DIRETORES QUE FORAM SELECIONADOS */
                                     $maxDiretores= $_SESSION['maxDiretores'];
                                     unset($_SESSION['maxDiretores']);
-
+ 
                                     for ($i=0; $i < $maxDiretores; $i++) {
                                         if (isset($_POST['chDiretor_'.$i])) {
                                             $codigoDiretor = $_POST['chDiretor_'.$i];
@@ -104,7 +103,6 @@ if ($_SESSION['acesso'] == true) {
                                         }
                                     }
 
-                                    break;
                                 case 'OPS!':
                                     echo "Já tem filme cadastrado!";
                                     break;
@@ -120,6 +118,17 @@ if ($_SESSION['acesso'] == true) {
    
         </div>
     </main>
+    <script type="text/javascript">
+        $("img.checkable").click(function () {
+            $(this).toggleClass("checked");
+        });
+        $(".checked");
+
+        $( '.captcha_imagens' ).click( function() {
+            $(this * '.checked').css( 'display', 'block' );
+            $(this).animate( { width: '70%', height: '70%' } );
+        });
+    </script>
     <!-- // FIM DO PRINCIPAL -->
     <?php if (isset($con)) {
         mysqli_close($con);

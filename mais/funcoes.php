@@ -58,6 +58,7 @@ function executaQuery($sql, $paginaDeRetorno){
     }
 }
 
+// FUNÇÃO PARA EXECUTR AS QUERYS E RETORNAR AS MANSAGENS DE SAÍDA
 function executaQuerySimples($sql){
     include "conexao.php";
     if ($res = mysqli_query($con, $sql)) {
@@ -71,7 +72,7 @@ function executaQuerySimples($sql){
                 $alert = 'alert-danger';
                 break;
         }
-    ?>
+        ?>
         <div class="alert <?php echo $alert; ?>" role="alert">
             <?php echo $saida; ?>
         </div>
@@ -79,8 +80,7 @@ function executaQuerySimples($sql){
     } else {
         echo "Erro ao executar a query.";
     }
-    if (isset($con)) {
-        mysqli_close($con);
+    if (isset($con)) {mysqli_close($con);
     }
 }
 

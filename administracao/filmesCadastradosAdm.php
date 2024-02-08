@@ -6,16 +6,7 @@
         include_once "../mais/conexao.php";
         include_once "../mais/funcoes.php";
     ?>
-    <title>Home</title>
-    <script type="text/javascript">
-        function validaCampos() {
-            if (document.fmCategorias.txtCategoria.value == "" ) {
-                alert("Favor preencher no campo o nome da categoria");
-                document.fmCategorias.txtCategoria.focus();
-                return false;
-            }
-        }
-    </script>
+    <title>Filme Cadastrados</title>
 </head>
 <body class="administracao">
 
@@ -27,63 +18,58 @@
     <!-- PRINCIPAL -->
 
     <main class="container">
-        <h3 class="text-center mt-5">Categorias - Administração</h3><br>
+        <h3 class="text-center mt-5">Filmes Cadastrados</h3><br>
         <div class="row-auto d-flex">
             <div class="col-md-3 col-sm-2 mx-3">
                 <?php include_once "menuAdm.html" ?>            
             </div>
             <div class="col-md-9 col-sm-9">
-                <?php 
-                    if(isset($_GET['btnSubmitCategoria'])) {
-                        $nomeCategoria = $_GET['txtCategoria'];
-                        $link = $nomeCategoria;
-                        $sql = "CALL sp_cadastra_categoria('$nomeCategoria','$link',@saida, @rotulo);";
-                        
-                        executaQuery($sql, "categoriasAdm.php");
-                    
-                    }else{
-                ?>
-                <h4 class="text-center mb-4">Cadastro Categorias</h4>
-                <form name="fmCategorias" method="get" action="categoriasAdm.php" onsubmit="return validaCampos()">
-                    <label>Nome da categoria</label><br>
-                    <input type="text" name="txtCategoria" class="form-control my-3" maxlength="50">
-                    <button type="submit" class="btn btn-primary w-100" name="btnSubmitCategoria">Cadastrar</button>
-                </form>     
-                <br>
-                <hr/>
-                <h2 class="text-center mb-3">Categorias cadastradas:</h2>
-                <div class="row mx-1">
-                    <?php  
-                        $sql = 'SELECT * FROM vw_retorna_categorias';
-                        if ($res=mysqli_query($con, $sql)) {
-                            $nomeCategoria = array();
-                            $linkCategoria = array();
-                            $codigoCategoria = array();
+                <div class="row">
+                    <?php
+                        $sql = "SELECT * FROM vw_retorna_filmes ORDER BY titulo_filme";
+                        if ($res = mysqli_query($con, $sql)) {
+
+                            $tituloFilme= array();
+                            $codigoFilme = array();
+                            $imagemFilme = array();
                             $i = 0;
-                            while ($reg=mysqli_fetch_assoc($res)) {
-                                $nomeCategoria[$i] = $reg['Nome_Categoria'];
-                                $linkCategoria[$i] = $reg['Link_Categoria'];
-                                $codigoCategoria[$i] = $reg['Codigo_Categoria'];
-                                ?>
-                                <div class="col-md-3 itensCadastrados text-center">
-                                    <label class="col-md-12"><?php echo $nomeCategoria[$i]; ?></label>
-                                    <div class="btn-group btn-group-sm" role="group" arial-label="Basic sample">
-                                        <a href="editaCategoriaAdm.php?editaCategoria=<?php echo $codigoCategoria[$i];
-                                        ?>&nomeCategoria=<?php echo $nomeCategoria[$i]; ?>" class="btn btn-primary">Editar</a>
-                                        <a href="editaCategoriaAdm.php?excluirCategoria=<?php echo $codigoCategoria[$i]; 
-                                        ?>" class="btn btn-secondary" onclick="return confirm('Tem certeza que deseja excluir esta categoria?')">Excluir</a>
-                                    </div>
+                            $linhas= 0;
+
+                            while ($reg = mysqli_fetch_assoc($res)) {
+                            $linhas = mysqli_affected_rows($con);
+                            $tituloFilme[$i] = $reg['titulo_filme'];
+                            $codigoFilme[$i] = $reg['codigo_filme'];
+                            $imagemFilme[$i] = $reg['caminho_imagem'];
+
+                            if (!isset($imagemFilme[$i])) {
+                                $imagemFilme[$i] = "sem_imagem.jpg";
+                            }
+                            ?>
+                            <div class="col-md-4 itensCadastrados text-center">
+                                <h6><?php echo $tituloFilme[$i]; ?></h6>
+                                <img src="../imagens/filmes/<?php echo $imagemFilme[$i]; ?>" class="img-responsive img-thumbnail mb-3" alt="">
+                                <div class="btn-group btn-group-sm" role="group" arial-label="Basic sample">
+                                    <a href="editaFilmeAdm.php?editaFilme=<?php echo $codigoFilme[$i]; ?>" class="btn btn-primary">Editar</a>
+                                    <a href="editaFilmeAdm.php?excluirFilme=<?php echo $codigoFilme[$i]; ?>" class="btn btn-secondary" 
+                                        onclick="return confirm('Tem certeza que deseja excluir este filme?')">Excluir</a>
                                 </div>
+                            </div>
+
                             <?php
                             $i++;
-                            }
                         }
-                    ?>
-                    </div>
-
-                    <?php
+                        if ($linhas == 0) {
+                        ?>
+                        <div class="alert alert-danger" role="alert">
+                            <h4>Nenhum filme cadastrado!</h4>
+                        </div>
+                        <?php
+                        }
+                    }else{
+                        echo "Erro ao executar a query!";
                     }
-                ?>
+                    ?>
+                </div>
             </div>
         </div>
     </main>

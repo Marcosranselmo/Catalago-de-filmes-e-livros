@@ -57,7 +57,7 @@ if ($_SESSION['acesso'] == true) {
                             $nomeImagem[$i] = $_FILES['fileImagem'.$i]['name'];
 
                             if ($nomeImagem[$i] <> "" && isset($_FILES['fileImagem'.$i]['name'])) {
-                                $nomeImagem[$i] = enviaImagem($_FILES['fileImagem'.$i]['name'], "firetores", $_FILES['
+                                $nomeImagem[$i] = enviaImagem($_FILES['fileImagem'.$i]['name'], "diretores", $_FILES['
                                 fileImagem'.$i]['tmp_name']);
                             }else{
                                 $nomeImagem[$i] = "";
@@ -93,15 +93,17 @@ if ($_SESSION['acesso'] == true) {
                                 <h4 class="text-center mb-4">Diretores Cadastrados</h4>
                                 <div class="row">
                                     <?php
-                                    $sql = "SELECT * FROM vw_retorna_diretores";
+                                    $sql = "SELECT * FROM vw_retorna_diretores ORDER BY nome_diretor";
                                     if ($res = mysqli_query($con, $sql)) {
 
                                         $nomeDiretor = array();
                                         $codigoDiretor = array();
                                         $imagemDiretor = array();
                                         $i = 0;
+                                        $linhas= 0;
 
                                         while ($reg = mysqli_fetch_assoc($res)) {
+                                        $linhas = mysqli_affected_rows($con);
                                         $nomeDiretor[$i] = $reg['nome_diretor'];
                                         $codigoDiretor[$i] = $reg['codigo_diretor'];
                                         $imagemDiretor[$i] = $reg['caminho_imagem'];
@@ -115,8 +117,7 @@ if ($_SESSION['acesso'] == true) {
                                             <img src="../imagens/diretores/<?php echo $imagemDiretor[$i]; ?>" class="img-responsive img-thumbnail mb-3" alt="">
                                             <!-- LINHA INATIVA <h6><?php echo $nomeDiretor[$i] . " codigo: " . $codigoDiretor[$i]; ?></h6> -->
                                             <div class="btn-group btn-group-sm" role="group" arial-label="Basic sample">
-                                                <a href="editaDiretorAdm.php?editaDiretor=<?php echo $codigoDiretor[$i]; ?>&nomeDiretor=<?php echo 
-                                                    $nomeDiretor[$i]; ?>" class="btn btn-primary">Editar</a>
+                                                <a href="editaDiretorAdm.php?editaDiretor=<?php echo $codigoDiretor[$i]; ?>" class="btn btn-primary">Editar</a>
                                                 <a href="editaDiretorAdm.php?excluirDiretor=<?php echo $codigoDiretor[$i]; ?>" class="btn btn-secondary" 
                                                     onclick="return confirm('Tem certeza que deseja excluir este(a) Diretor(a)?')">Excluir</a>
                                             </div>

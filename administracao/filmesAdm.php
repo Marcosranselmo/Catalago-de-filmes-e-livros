@@ -35,7 +35,7 @@ if ($_SESSION['acesso'] == true) {
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item" role="presentation">
                         <a href="#tabCadastro" class="nav-link active" id="linkCadastro" data-toggle="tab" role="tab" 
-                        aria-controls="tabCadastro">Cadastrados Diretores(a) </a>
+                        aria-controls="tabCadastro">Informações Básicas</a>
                     </li>
                     <li class="nav-item" role="presentation">
                         <a href="#tabDiretores" class="nav-link" id="linkDiretores" data-toggle="tab" role="tab" 
@@ -91,9 +91,9 @@ if ($_SESSION['acesso'] == true) {
 <!--                             <textarea class="form-control" name="txtSinopse" cols="30" rows="3"></textarea>
  -->
                             <label>Fotos do Ator</label>
-                            <input type="file" name="fileImagem0" class="btn btn-success w-100 mb-2" accept="image/png, imagem/jpg">
-                            <input type="file" name="fileImagem1" class="btn btn-success w-100 mb-2" accept="image/png, imagem/jpg">
-                            <input type="file" name="fileImagem2" class="btn btn-success w-100 mb-2" accept="image/png, imagem/jpg">
+                            <input type="file" name="fileImagem0" class="btn btn-success w-100 mb-2" accept="image/png, imagem/jpeg">
+                            <input type="file" name="fileImagem1" class="btn btn-success w-100 mb-2" accept="image/png, imagem/jpeg">
+                            <input type="file" name="fileImagem2" class="btn btn-success w-100 mb-2" accept="image/png, imagem/jpeg">
 
                         </div>
                         <!--------- FIM DA ABA INFORMAÇÕES DO FILME --------->
@@ -227,7 +227,7 @@ if ($_SESSION['acesso'] == true) {
                                             <?php
                                             $i++;
                                         }
-                                        $_SESSION['maxCategoria'] = $i;
+                                        $_SESSION['maxCategorias'] = $i;
                                     }else{
                                         echo "Erro ao executr a query!";
                                     }
@@ -241,6 +241,20 @@ if ($_SESSION['acesso'] == true) {
             </div>
         </div>
     </main>
+    <script type="text/javascript">
+        $("img.checkable").click(function () {
+            $(this).toggleClass("checked");
+        });
+        $(".checked");
+
+        $( '.captcha_imagens' ).click( function() {
+            $(this * '.checked').css( 'display', 'block' );
+            $(this).animate( { width: '70%', height: '70%' } );
+        });
+    </script>
+
+
+
     <!-- //PRINCIPAL -->
     <?php if (isset($con)) {
         mysqli_close($con);
