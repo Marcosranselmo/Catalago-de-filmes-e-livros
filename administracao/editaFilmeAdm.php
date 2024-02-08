@@ -6,12 +6,22 @@
         include_once "../mais/conexao.php";
         include_once "../mais/funcoes.php";
     ?>
-    <title>Home</title>
+    <title>Editar Filmes</title>
     <script type="text/javascript">
         function validaCampos() {
-            if (document.fmCategorias.txtCategoria.value == "" ) {
-                alert("Favor preencher no campo o nome da categoria");
-                document.fmCategorias.txtCategoria.focus();
+            if (document.fmAtores.txtNome.value == "") {
+                alert("Preencha o nome!");
+                document.fmAtores.txtNome.focus();
+                return false;
+            }
+            if (document.fmAtores.txtBiografia.value == "") {
+                alert("Preencha o campo Biografia!");
+                document.fmAtores.txtBiografia.focus();
+                return false;
+            }
+            if (document.fmAtores.selPais.value == 0) {
+                alert("Escolha um País!");
+                document.fmAtores.selPais.focus();
                 return false;
             }
         }
@@ -33,7 +43,20 @@
                 <?php include_once "menuAdm.html" ?>            
             </div>
             <div class="col-md-9 col-sm-9">
+                <?php
+                    if (isset($_GET['excluirFilme'])) {
 
+                        $codigoFilme = $_GET['excluirFilme'];
+                        /* EXCLUI TODAS AS IMAGENS FO FILME SELECIONADO */
+                        excluiTodasImagens($codigoFilme,"filmes");
+
+                        $sql = "CALL sp_deleta_filme($codigoFilme, @saida, @saida_rotulo)"; 
+                        executaQuery($sql, "filmesCadastradosAdm.php");
+
+                    }else{
+
+                    }
+                ?>
             </div>
         </div>
     </main>

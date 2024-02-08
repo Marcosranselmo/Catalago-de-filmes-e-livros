@@ -53,8 +53,7 @@ function executaQuery($sql, $paginaDeRetorno){
     } else {
         echo "Erro ao executar a query.";
     }
-    if (isset($con)) {
-        mysqli_close($con);
+    if (isset($con)) { mysqli_close($con);
     }
 }
 

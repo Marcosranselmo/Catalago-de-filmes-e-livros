@@ -78,7 +78,6 @@ if ($_SESSION['acesso'] == true) {
                                 echo "Algo deu errado ao executar a query!";
                             }
                         
-
                             $imagnsAtor = array();
                             $imagensCodigo = array();
                             $i = 0;
