@@ -78,7 +78,7 @@ if ($_SESSION['acesso'] == true) {
                                 echo "Algo deu errado ao executar a query!";
                             }
                         
-                            $imagnsAtor = array();
+                            $imagensAtor = array();
                             $imagensCodigo = array();
                             $i = 0;
                             $sql = "SELECT * FROM imagens WHERE atores_codigo = $codigoAtor";
