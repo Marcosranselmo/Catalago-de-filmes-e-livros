@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+}
+if ($_SESSION['acesso'] == true) {
+?>
 <html>
 <head>
     <?php
@@ -66,7 +72,7 @@
                         $sql = "SELECT * FROM vw_retorna_filmes WHERE codigo_filme = $codigoFilme";
                         if ($res = mysqli_query($con, $sql)) {
                             $reg = mysqli_fetch_assoc($res);
-                            $codigo = $reg['codigo_filme'];
+                            $codigoFilme = $reg['codigo_filme'];
                             $nometituloFilme = $reg['titulo_filme'];
                             $subtituloFilme = $reg['subtitulo_filme'];
                             $anolancamentoFilme = $reg['ano_lancamento_filme'];
@@ -260,4 +266,10 @@
     crossorigin="anonymous">
 </script>
 </body>
+<?php 
+    }else{ ?>
+    <meta http-equiv="refresh" content=0;url="login.php">
+    <?php
+    }
+?>
 </html>
