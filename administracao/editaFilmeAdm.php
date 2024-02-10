@@ -72,7 +72,6 @@ if ($_SESSION['acesso'] == true) {
                         $sql = "SELECT * FROM vw_retorna_filmes WHERE codigo_filme = $codigoFilme";
                         if ($res = mysqli_query($con, $sql)) {
                             $reg = mysqli_fetch_assoc($res);
-                            $codigoFilme = $reg['codigo_filme'];
                             $nometituloFilme = $reg['titulo_filme'];
                             $subtituloFilme = $reg['subtitulo_filme'];
                             $anolancamentoFilme = $reg['ano_lancamento_filme'];
