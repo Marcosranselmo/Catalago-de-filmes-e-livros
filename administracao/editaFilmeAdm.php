@@ -51,9 +51,7 @@ if ($_SESSION['acesso'] == true) {
                     </li>
                 </ul>
   
-                <h3>Editando dados filme</h3>
-                <form name="fmFilmes" method="post" action="editaFilmeAdm.php" enctype="multipart/form-data" onsubmit="return validaCampos()">
-
+                <h3>Edita filme</h3>
                 <?php
                     if (isset($_GET['excluirFilme'])) {
 
@@ -106,8 +104,12 @@ if ($_SESSION['acesso'] == true) {
                         } ?> 
 
                         <!-- EXIBIR INFORMÇÕES DO FILME NO FORMULÁRIO -->
-<!--                         <form name="fmFilmes" method="post" action="editaFilmeAdm.php" enctype="multipart/form-data" onsubmit="return validaCampos()">
- -->                            <label>Nome:</label>
+                        <form name="fmFilmes" method="post" action="editaFilmeAdm.php" enctype="multipart/form-data" onsubmit="return validaCampos()">
+                            <label>Nome:</label>
+                            <div class="tab-content" id="meusConteudos">
+                            <div class="tab-pane fade show-active" id="tabFilme" role="tabpanel" aria-labelledby="linkFilme">
+
+
                             <input type="text" name="txtTitulo" class="form-control mb-2" maxlength="70" value="<?php echo $nometituloFilme; ?>">
                             
                             <label>Subtítulo do Filme</label>
@@ -167,6 +169,8 @@ if ($_SESSION['acesso'] == true) {
                                 }
                                 ?>
                             </div> 
+                            </div>
+                            
                             <br>
                             <?php
                         
@@ -245,7 +249,7 @@ if ($_SESSION['acesso'] == true) {
                             }
                             ?>
                   
-                            <!-- </div> -->
+                            
                             <!--------- FIM DA ABA INFORMAÇÕES DO FILME --------->
 
                             <!--------- EXIBIÇÃO DOS DIRETORES ------------------>
@@ -277,7 +281,8 @@ if ($_SESSION['acesso'] == true) {
                             <!-- </div>
                             </div> -->
                             <button type="submit" name="btnSubmitFilmes" class="btn btn-primary w-100 mb-1">Salvar Alteraçoes</button>                </form>
-                
+            </div>
+            
                         </form>        
             </div>
         </div>
