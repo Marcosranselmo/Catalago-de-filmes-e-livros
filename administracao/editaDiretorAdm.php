@@ -97,7 +97,7 @@ if ($_SESSION['acesso'] == true) {
                                 echo "Algo deu errado ao executar a query!";
                             } ?> 
 
-                            <!-- EXIBIR INFORMÇÕES DO ATRO/ATRIZ NO FORMULÁRIO -->
+                            <!-- EXIBIR INFORMÇÕES DO DIRETOR NO FORMULÁRIO -->
                             <form name="fmDiretores" method="post" action="editaDiretorAdm.php" enctype="multipart/form-data" onsubmit="return validaCampos()">
                                 <label>Nome:</label>
                                 <input type="text" name="txtNome" class="form-control mb-2" maxlength="70" value="<?php echo $nomeDiretor; ?>">

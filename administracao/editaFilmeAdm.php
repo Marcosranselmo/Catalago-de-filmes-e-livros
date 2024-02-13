@@ -248,40 +248,151 @@ if ($_SESSION['acesso'] == true) {
 
                             }
                             ?>
-                  
                             
                             <!--------- FIM DA ABA INFORMAÇÕES DO FILME --------->
 
                             <!--------- EXIBIÇÃO DOS DIRETORES ------------------>
                             <div class="tab-pane fade" id="tabDiretores" role="tabpanel" aria-labelledby="linkDiretores">
-                            <h4>Selecione Diretor do Filme</h4>
+                            <h3>Selecione Diretor do Filme</h3>
                                 <div class="row">    
-                                <h4>Diretores</h4>
+                                    <?php 
+                                        $sql = "SELECT * FROM vw_retorna_diretores ORDER BY nome_diretor";
+                                        if ($res = mysqli_query($con, $sql)) {
+
+                                            $nomeDiretor = array();
+                                            $codigoDiretor = array();
+                                            $imagemDiretor = array();
+                                            $i = 0;
+                                            $linhas = 0;
+                                        
+                                            while($reg = mysqli_fetch_assoc($res)) {
+                                                $linhas = mysqli_affected_rows($con);
+                                                $nomeDiretor[$i] = $reg['nome_diretor'];
+                                                $codigoDiretor[$i] = $reg['codigo_diretor'];
+                                                $imagemDiretor[$i] = $reg['caminho_imagem'];
+
+                                                if (!isset($imagemDiretor[$i])) {
+                                                    $imagemDiretor[$i] = "sem_imagem.jpg";
+                                                }
+                                                ?>
+                                                <div class="col-md-3 itensCadastrados text-center">
+                                                    <img src="../imagens/diretores/<?php echo $imagemDiretor[$i]; ?>" class="
+                                                    img-responsive img-thumbnail">
+                                                    <h4><?php echo $nomeDiretor[$i]; ?></h4>
+                                                    <input type="checkbox" name="<?php 'chDiretor_'.$i; ?>" value="<?php echo
+                                                    $codigoDiretor[$i]; ?>">
+                                                </div>
+
+                                                <?php
+                                                $i++;
+                                            }
+                                            $_SESSION['maxDiretores'] = $i;
+                                        if ($linhas == 0) {
+                                            ?>
+                                
+                                            <div class="alert alert-danger" role="alert">
+                                                <h4>Nenhum diretor cadastrado!</h4>
+                                            </div>
+                                            <?php
+                                        }
+                                    }else{
+                                        echo 'Erro ao executar a query!';
+                                    }
+                                    ?>
                                 </div>
                             </div>
                             <!----------- FIM DA EXIBIÇÃO DOS DIRETORES --------------->
 
                             <!----------- EXIBIÇÃO DOS ATORES/ATRIZES ------------------>
                             <div class="tab-pane fade" id="tabAtores" role="tabpanel" aria-labelledby="linkAtores">
-                            <h4>Selecione os Atores(a) do Filme</h4>
+                                <h3>Selecione os Atores(a) do Filme</h3>
                                 <div class="row">    
-                                <h3>Atores</h3>
+                                    <?php 
+                                        $sql = "SELECT * FROM vw_retorna_atores";
+                                        if ($res = mysqli_query($con, $sql)) {
+
+                                            $nomeAtor = array();
+                                            $codigoAtor = array();
+                                            $imagemAtor = array();
+                                            $i = 0;
+                                        
+                                            while($reg = mysqli_fetch_assoc($res)) {
+                                                $linhas = mysqli_affected_rows($con);
+                                                $nomeAtor[$i] = $reg['nome_ator'];
+                                                $codigoAtor[$i] = $reg['codigo_ator'];
+                                                $imagemAtor[$i] = $reg['caminho_imagem'];
+
+                                                if (!isset($imagemAtor[$i])) {
+                                                    $imagemAtor[$i] = "sem_imagem.jpg";
+                                                }
+                                                ?>
+                                                <div class="col-md-3 itensCadastrados text-center">
+                                                    <img src="../imagens/atores/<?php echo $imagemAtor[$i]; ?>" class="
+                                                    img-responsive img-thumbnail">
+                                                    <h4><?php echo $nomeAtor[$i]; ?></h4>
+                                                    <input type="checkbox" name="<?php 'chAtor_'.$i; ?>" value="<?php echo
+                                                    $codigoAtor[$i]; ?>">
+                                                </div>
+
+                                                <?php
+                                                $i++;
+                                            }
+                                            $_SESSION['maxAtores'] = $i;
+                                        if ($linhas == 0) {
+                                            ?>
+                                
+                                            <div class="alert alert-danger" role="alert">
+                                                <h4>Nenhum diretor cadastrado!</h4>
+                                            </div>
+                                            <?php
+                                        }
+                                    }else{
+                                        echo 'Erro ao executar a query!';
+                                    }
+                                    ?>
                                 </div>
                             </div>
                             <!----------- FIM DA EXIBIÇÃO DOS ATORES/ATRIZES --------------->
 
                             <!----------- EXIBIÇÃO DOS CATEGORIAS ------------------>
                             <div class="tab-pane fade" id="tabCategorias" role="tabpanel" aria-labelledby="linkCategorias">
-                            <h4>Selecione a categoria do filme</h4>
+                                <h3>Selecione a categoria do filme</h3>
                                 <div class="row">    
-                                <h3>Categorias</h3>
+                                    <?php 
+                                        $sql = "SELECT * FROM vw_retorna_categorias";
+                                        if ($res = mysqli_query($con, $sql)) {
+
+                                            $nomeCategoria = array();
+                                            $codigoCategoria = array();
+                                            $i = 0;
+                                        
+                                            while($reg = mysqli_fetch_assoc($res)) {
+                                                $nomeCategoria[$i] = $reg['Nome_Categoria'];
+                                                $codigoCategoria[$i] = $reg['Codigo_Categoria'];
+
+                                                ?>
+                                                <div class="col-md-3 itensCadastrados text-center">
+                                                    <h4><?php echo $nomeCategoria[$i]; ?></h4>
+                                                    <input type="checkbox" name="<?php 'chCategoria_'.$i; ?>" value="<?php echo
+                                                    $codigoCategoria[$i]; ?>">
+                                                </div>
+
+                                                <?php
+                                                $i++;
+                                            }
+                                            $_SESSION['maxCategorias'] = $i;
+                                        }else{
+                                            echo "Erro ao executr a query!";
+                                        }
+                                    ?>
                                 </div>
                             </div>
                             <!------------------ FIM DA EXIBIÇÃO DAS CATEGORIAS ------------------>
                             <!-- </div>
                             </div> -->
+                            </div>
                             <button type="submit" name="btnSubmitFilmes" class="btn btn-primary w-100 mb-1">Salvar Alteraçoes</button>                </form>
-            </div>
+                        </div>
             
                         </form>        
             </div>
