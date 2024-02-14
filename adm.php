@@ -56,7 +56,7 @@
             </div>
             <div class="col-md-3 col-sm-6 opcoes text-center">
                 <i class="fa-solid fa-sliders"></i>
-                <a href="administracao/bannerprincipal.php">
+                <a href="administracao/bannerAdm.php">
                     <p>Banner Principal</p>
                 </a>
             </div>

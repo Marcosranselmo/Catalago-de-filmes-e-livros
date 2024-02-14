@@ -107,292 +107,290 @@ if ($_SESSION['acesso'] == true) {
                         <form name="fmFilmes" method="post" action="editaFilmeAdm.php" enctype="multipart/form-data" onsubmit="return validaCampos()">
                             <label>Nome:</label>
                             <div class="tab-content" id="meusConteudos">
-                            <div class="tab-pane fade show-active" id="tabFilme" role="tabpanel" aria-labelledby="linkFilme">
+                                <div class="tab-pane fade show-active" id="tabFilme" role="tabpanel" aria-labelledby="linkFilme">
 
-
-                            <input type="text" name="txtTitulo" class="form-control mb-2" maxlength="70" value="<?php echo $nometituloFilme; ?>">
-                            
-                            <label>Subtítulo do Filme</label>
-                            <input type="text" name="txtSubtitulo" class="form-control" value="<?php echo $subtituloFilme; ?>">
-                            
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Ano lançamento do filme</label>
-                                    <select type="text" name="selAnoLancamento" class="form-control" value="<?php echo $anolancamentoFilme; ?>">
-                                        <?php 
-                                            $anoAtual = date('Y');
-                                            for ($i=$anoAtual; $i >= 1888; $i--) {
+                                    <input type="text" name="txtTitulo" class="form-control mb-2" maxlength="70" value="<?php echo $nometituloFilme; ?>">
+                                    
+                                    <label>Subtítulo do Filme</label>
+                                    <input type="text" name="txtSubtitulo" class="form-control" value="<?php echo $subtituloFilme; ?>">
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Ano lançamento do filme</label>
+                                            <select type="text" name="selAnoLancamento" class="form-control" value="<?php echo $anolancamentoFilme; ?>">
+                                                <?php 
+                                                    $anoAtual = date('Y');
+                                                    for ($i=$anoAtual; $i >= 1888; $i--) {
+                                                        ?>
+                                                        <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                                                        <?php
+                                                    }
                                                 ?>
-                                                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-                                                <?php
-                                            }
-                                        ?>
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Trailer do Filme</label>
-                                    <input type="text" name="txtTrailer" class="form-control" value="<?php echo $trailerFilme; ?>">
-                                </div>
-                            </div>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Trailer do Filme</label>
+                                            <input type="text" name="txtTrailer" class="form-control" value="<?php echo $trailerFilme; ?>">
+                                        </div>
+                                    </div>
 
-                            <label>Sinópse</label>
-                            <textarea type="text" name="txtSinopse" class="form-control" cols="30" rows="5" value="<?php echo $sinopseFilme; ?>">
-                            </textarea>
+                                    <label>Sinópse</label>
+                                    <textarea type="text" name="txtSinopse" class="form-control" cols="30" rows="5" value="<?php echo $sinopseFilme; ?>">
+                                    </textarea>
 
-                            <label class="text-center">Imagem do Filme</label>
-                            <div class="row text-center align-items-center"> 
-                                <div class="col-md-3 mt-4 mb-4"><h5><strong>Imagem</strong></h5></div>
-                                <div class="col-md-6"><h5><strong>Carregar nova imagem</strong></h5></div>
-                                <div class="col-md-3"><h5><strong>Excluir imagem</strong></h5></div>
-                                <?php
-                                for ($i=0; $i < 3; $i++) { ?>
-                                    <div class="col-md-3">
-                                    <?php
-                                    if (isset($imagensFilme[$i])) { 
-                                        ?>
-                                        <img src="../imagens/filmes/<?php echo $imagensFilme[$i]; ?>" title="<?php echo $imagensFilme[$i]; ?>" style="max-width: 100px; padding: 5px;">
+                                    <label class="text-center">Imagem do Filme</label>
+                                    <div class="row text-center align-items-center"> 
+                                        <div class="col-md-3 mt-4 mb-4"><h5><strong>Imagem</strong></h5></div>
+                                        <div class="col-md-6"><h5><strong>Carregar nova imagem</strong></h5></div>
+                                        <div class="col-md-3"><h5><strong>Excluir imagem</strong></h5></div>
                                         <?php
-                                    }else{
+                                        for ($i=0; $i < 3; $i++) { ?>
+                                            <div class="col-md-3">
+                                            <?php
+                                            if (isset($imagensFilme[$i])) { 
+                                                ?>
+                                                <img src="../imagens/filmes/<?php echo $imagensFilme[$i]; ?>" title="<?php echo $imagensFilme[$i]; ?>" style="max-width: 100px; padding: 5px;">
+                                                <?php
+                                            }else{
+                                                ?>
+                                                <img src="../imagens/filmes/sem_imagem.jpg" title="sem_imagem.jpg" style="max-width: 100px; padding: 5px;">
+                                            <?php
+                                            } ?>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="file" name="<?php echo "fileImagemFilme".$i ?>" 
+                                                class="btn btn-success w-100" accept="image/png, imagem/jpeg">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input type="checkbox" name="<?php echo "chExcluir".$i ?>">
+                                            </div>
+                                            <?php
+                                        }
                                         ?>
-                                        <img src="../imagens/filmes/sem_imagem.jpg" title="sem_imagem.jpg" style="max-width: 100px; padding: 5px;">
-                                    <?php
-                                    } ?>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="file" name="<?php echo "fileImagemFilme".$i ?>" 
-                                        class="btn btn-success w-100" accept="image/png, imagem/jpeg">
-                                    </div>
-                                    <div class="col-md-3">
-                                        <input type="checkbox" name="<?php echo "chExcluir".$i ?>">
-                                    </div>
-                                    <?php
+                                    </div> 
+                                </div>
+                                
+                                <br>
+                                <?php
+                            
+                                }elseif(isset($_POST['btnSubmitFilmes'])) {
+                            
+                                /* $_SESSION['caminho_imagem'][$i] = $reg['caminho'];
+                                $_SESSION['codigo_imagem'][$i] = $reg['codigo']; */
+                            
+                                $codigoFilme = $_SESSION['codigo_filme'];
+                                unset($_SESSION['codigo_filme']);
+
+                                $nomeImagem = array();
+                                $codigoImagem = array();
+
+                                for ($i=0; $i < 3; $i++) {
+
+                                $nomeImagem[$i] = $_FILES['fileImagemFilme'.$i]['name'];
+                                $codigoImagem[$i] = "";
+
+                                if ($nomeImagem[$i] <> "" && isset($_FILES['fileImagemFilme'.$i]['name'])) {
+                                    $nomeImagem[$i] = enviaImagem($_FILES['fileImagemFilme'.$i]['name'], "filmes", 
+                                    $_FILES['fileImagemFilme'.$i]['tmp_name']);
+                                }elseif( isset($_SESSION['caminho_imagem'][$i])){
+                                    $nomeImagem[$i] = $_SESSION['caminho_imagem'][$i];
+                                }
+
+                                if( isset($_SESSION['codigo_imagem'][$i])){
+                                    $codigoImagem[$i] = $_SESSION['codigo_imagem'][$i];
+                                }
+                                /* essa verificção é para o caso do usuário substituir a imagem que já está salva */
+                                if (isset($_SESSION['caminho_imagem'][$i]) && isset($nomeImagem[$i])) {
+                                    /* verifica se a imagem atual ediferente da iamgem que foi enviada no input */
+                                    if ($_SESSION['caminho_imagem'][$i] <> $nomeImagem[$i]) {
+                                        excluiUmaImagem($codigoImagem[$i], 'filmes');
+                                    }
+                                }
+
+                                if (isset($_POST['chExcluir'.$i])) {
+                                    excluiUmaImagem($codigoImagem[$i], "filmes");
+                                    $nomeImagem[$i] = "";
+                                    /* O NOME DA IMAGEM É ENVIADO COMO VAIO, POIS DESSA FORMA, A PROCEDURE ENTENDE
+                                    QUE É PARA EXCLUIR A IMAGEM DA TABELA DE IAMGENS */
+                                    }
+                                } /* FIM DO FOR */
+
+                                if (isset($_SESSION['caminho_imagem']) || $_SESSION['codigo_imagem']) {
+                                    unset($_SESSION['caminho_imagem']);
+                                    unset($_SESSION['codigo_imagem']);
+                                }
+
+                                $nometituloFilme = $_POST['txtTitulo'];
+                                $nomesubtituloFilme = $_POST['txtSubtitulo'];
+                                $anolancamentoFilme = $_POST['selAnoLancamento'];
+                                $trailerFilme = $_POST['txtTrailer'];
+                                $sinopseFilme = $_POST['txtSinopse'];
+
+                                $sql = "CALL sp_edita_filme(
+                                '$codigoFilme',
+                                '$nometituloFilme',
+                                '$nomesubtituloFilme',
+                                '$anolancamentoFilme',
+                                '$trailerFilme',
+                                '$sinopseFilme',
+                                '$nomeImagem[0]',
+                                '$codigoImagem[0]',
+                                '$nomeImagem[1]',
+                                '$codigoImagem[1]',
+                                '$nomeImagem[2]',
+                                '$codigoImagem[2]',
+                                @saida,
+                                @saida_rotulo)";
+
+                                executaQuery($sql, 'filmesAdm.php');
+                                }else{
+
                                 }
                                 ?>
-                            </div> 
-                            </div>
-                            
-                            <br>
-                            <?php
-                        
-                            }elseif(isset($_POST['btnSubmitFilmes'])) {
-                        
-                            /* $_SESSION['caminho_imagem'][$i] = $reg['caminho'];
-                            $_SESSION['codigo_imagem'][$i] = $reg['codigo']; */
-                        
-                            $codigoFilme = $_SESSION['codigo_filme'];
-                            unset($_SESSION['codigo_filme']);
-
-                            $nomeImagem = array();
-                            $codigoImagem = array();
-
-                            for ($i=0; $i < 3; $i++) {
-
-                            $nomeImagem[$i] = $_FILES['fileImagemFilme'.$i]['name'];
-                            $codigoImagem[$i] = "";
-
-                            if ($nomeImagem[$i] <> "" && isset($_FILES['fileImagemFilme'.$i]['name'])) {
-                                $nomeImagem[$i] = enviaImagem($_FILES['fileImagemFilme'.$i]['name'], "filmes", 
-                                $_FILES['fileImagemFilme'.$i]['tmp_name']);
-                            }elseif( isset($_SESSION['caminho_imagem'][$i])){
-                                $nomeImagem[$i] = $_SESSION['caminho_imagem'][$i];
-                            }
-
-                            if( isset($_SESSION['codigo_imagem'][$i])){
-                                $codigoImagem[$i] = $_SESSION['codigo_imagem'][$i];
-                            }
-                            /* essa verificção é para o caso do usuário substituir a imagem que já está salva */
-                            if (isset($_SESSION['caminho_imagem'][$i]) && isset($nomeImagem[$i])) {
-                                /* verifica se a imagem atual ediferente da iamgem que foi enviada no input */
-                                if ($_SESSION['caminho_imagem'][$i] <> $nomeImagem[$i]) {
-                                    excluiUmaImagem($codigoImagem[$i], 'filmes');
-                                }
-                            }
-
-                            if (isset($_POST['chExcluir'.$i])) {
-                                excluiUmaImagem($codigoImagem[$i], "filmes");
-                                $nomeImagem[$i] = "";
-                                /* O NOME DA IMAGEM É ENVIADO COMO VAIO, POIS DESSA FORMA, A PROCEDURE ENTENDE
-                                QUE É PARA EXCLUIR A IMAGEM DA TABELA DE IAMGENS */
-                                }
-                            } /* FIM DO FOR */
-
-                            if (isset($_SESSION['caminho_imagem']) || $_SESSION['codigo_imagem']) {
-                                unset($_SESSION['caminho_imagem']);
-                                unset($_SESSION['codigo_imagem']);
-                            }
-
-                            $nometituloFilme = $_POST['txtTitulo'];
-                            $nomesubtituloFilme = $_POST['txtSubtitulo'];
-                            $anolancamentoFilme = $_POST['selAnoLancamento'];
-                            $trailerFilme = $_POST['txtTrailer'];
-                            $sinopseFilme = $_POST['txtSinopse'];
-
-                            $sql = "CALL sp_edita_filme(
-                            '$codigoFilme',
-                            '$nometituloFilme',
-                            '$nomesubtituloFilme',
-                            '$anolancamentoFilme',
-                            '$trailerFilme',
-                            '$sinopseFilme',
-                            '$nomeImagem[0]',
-                            '$codigoImagem[0]',
-                            '$nomeImagem[1]',
-                            '$codigoImagem[1]',
-                            '$nomeImagem[2]',
-                            '$codigoImagem[2]',
-                            @saida,
-                            @saida_rotulo)";
-
-                            executaQuery($sql, 'filmesAdm.php');
-                            }else{
-
-                            }
-                            ?>
-                            
-                            <!--------- FIM DA ABA INFORMAÇÕES DO FILME --------->
-
-                            <!--------- EXIBIÇÃO DOS DIRETORES ------------------>
-                            <div class="tab-pane fade" id="tabDiretores" role="tabpanel" aria-labelledby="linkDiretores">
-                            <h3>Selecione Diretor do Filme</h3>
-                                <div class="row">    
-                                    <?php 
-                                        $sql = "SELECT * FROM vw_retorna_diretores ORDER BY nome_diretor";
-                                        if ($res = mysqli_query($con, $sql)) {
-
-                                            $nomeDiretor = array();
-                                            $codigoDiretor = array();
-                                            $imagemDiretor = array();
-                                            $i = 0;
-                                            $linhas = 0;
-                                        
-                                            while($reg = mysqli_fetch_assoc($res)) {
-                                                $linhas = mysqli_affected_rows($con);
-                                                $nomeDiretor[$i] = $reg['nome_diretor'];
-                                                $codigoDiretor[$i] = $reg['codigo_diretor'];
-                                                $imagemDiretor[$i] = $reg['caminho_imagem'];
-
-                                                if (!isset($imagemDiretor[$i])) {
-                                                    $imagemDiretor[$i] = "sem_imagem.jpg";
-                                                }
-                                                ?>
-                                                <div class="col-md-3 itensCadastrados text-center">
-                                                    <img src="../imagens/diretores/<?php echo $imagemDiretor[$i]; ?>" class="
-                                                    img-responsive img-thumbnail">
-                                                    <h4><?php echo $nomeDiretor[$i]; ?></h4>
-                                                    <input type="checkbox" name="<?php 'chDiretor_'.$i; ?>" value="<?php echo
-                                                    $codigoDiretor[$i]; ?>">
-                                                </div>
-
-                                                <?php
-                                                $i++;
-                                            }
-                                            $_SESSION['maxDiretores'] = $i;
-                                        if ($linhas == 0) {
-                                            ?>
                                 
-                                            <div class="alert alert-danger" role="alert">
-                                                <h4>Nenhum diretor cadastrado!</h4>
-                                            </div>
-                                            <?php
-                                        }
-                                    }else{
-                                        echo 'Erro ao executar a query!';
-                                    }
-                                    ?>
-                                </div>
-                            </div>
-                            <!----------- FIM DA EXIBIÇÃO DOS DIRETORES --------------->
+                                <!--------- FIM DA ABA INFORMAÇÕES DO FILME --------->
 
-                            <!----------- EXIBIÇÃO DOS ATORES/ATRIZES ------------------>
-                            <div class="tab-pane fade" id="tabAtores" role="tabpanel" aria-labelledby="linkAtores">
-                                <h3>Selecione os Atores(a) do Filme</h3>
-                                <div class="row">    
-                                    <?php 
-                                        $sql = "SELECT * FROM vw_retorna_atores";
-                                        if ($res = mysqli_query($con, $sql)) {
+                                <!--------- EXIBIÇÃO DOS DIRETORES ------------------>
+                                <div class="tab-pane fade" id="tabDiretores" role="tabpanel" aria-labelledby="linkDiretores">
+                                <h3>Selecione Diretor do Filme</h3>
+                                    <div class="row">    
+                                        <?php 
+                                            $sql = "SELECT * FROM vw_retorna_diretores ORDER BY nome_diretor";
+                                            if ($res = mysqli_query($con, $sql)) {
 
-                                            $nomeAtor = array();
-                                            $codigoAtor = array();
-                                            $imagemAtor = array();
-                                            $i = 0;
-                                        
-                                            while($reg = mysqli_fetch_assoc($res)) {
-                                                $linhas = mysqli_affected_rows($con);
-                                                $nomeAtor[$i] = $reg['nome_ator'];
-                                                $codigoAtor[$i] = $reg['codigo_ator'];
-                                                $imagemAtor[$i] = $reg['caminho_imagem'];
+                                                $nomeDiretor = array();
+                                                $codigoDiretor = array();
+                                                $imagemDiretor = array();
+                                                $i = 0;
+                                                $linhas = 0;
+                                            
+                                                while($reg = mysqli_fetch_assoc($res)) {
+                                                    $linhas = mysqli_affected_rows($con);
+                                                    $nomeDiretor[$i] = $reg['nome_diretor'];
+                                                    $codigoDiretor[$i] = $reg['codigo_diretor'];
+                                                    $imagemDiretor[$i] = $reg['caminho_imagem'];
 
-                                                if (!isset($imagemAtor[$i])) {
-                                                    $imagemAtor[$i] = "sem_imagem.jpg";
+                                                    if (!isset($imagemDiretor[$i])) {
+                                                        $imagemDiretor[$i] = "sem_imagem.jpg";
+                                                    }
+                                                    ?>
+                                                    <div class="col-md-3 itensCadastrados text-center">
+                                                        <img src="../imagens/diretores/<?php echo $imagemDiretor[$i]; ?>" class="
+                                                        img-responsive img-thumbnail">
+                                                        <h4><?php echo $nomeDiretor[$i]; ?></h4>
+                                                        <input type="checkbox" name="<?php 'chDiretor_'.$i; ?>" value="<?php echo
+                                                        $codigoDiretor[$i]; ?>">
+                                                    </div>
+
+                                                    <?php
+                                                    $i++;
                                                 }
+                                                $_SESSION['maxDiretores'] = $i;
+                                            if ($linhas == 0) {
                                                 ?>
-                                                <div class="col-md-3 itensCadastrados text-center">
-                                                    <img src="../imagens/atores/<?php echo $imagemAtor[$i]; ?>" class="
-                                                    img-responsive img-thumbnail">
-                                                    <h4><?php echo $nomeAtor[$i]; ?></h4>
-                                                    <input type="checkbox" name="<?php 'chAtor_'.$i; ?>" value="<?php echo
-                                                    $codigoAtor[$i]; ?>">
+                                    
+                                                <div class="alert alert-danger" role="alert">
+                                                    <h4>Nenhum diretor cadastrado!</h4>
                                                 </div>
-
                                                 <?php
-                                                $i++;
                                             }
-                                            $_SESSION['maxAtores'] = $i;
-                                        if ($linhas == 0) {
-                                            ?>
-                                
-                                            <div class="alert alert-danger" role="alert">
-                                                <h4>Nenhum diretor cadastrado!</h4>
-                                            </div>
-                                            <?php
-                                        }
-                                    }else{
-                                        echo 'Erro ao executar a query!';
-                                    }
-                                    ?>
-                                </div>
-                            </div>
-                            <!----------- FIM DA EXIBIÇÃO DOS ATORES/ATRIZES --------------->
-
-                            <!----------- EXIBIÇÃO DOS CATEGORIAS ------------------>
-                            <div class="tab-pane fade" id="tabCategorias" role="tabpanel" aria-labelledby="linkCategorias">
-                                <h3>Selecione a categoria do filme</h3>
-                                <div class="row">    
-                                    <?php 
-                                        $sql = "SELECT * FROM vw_retorna_categorias";
-                                        if ($res = mysqli_query($con, $sql)) {
-
-                                            $nomeCategoria = array();
-                                            $codigoCategoria = array();
-                                            $i = 0;
-                                        
-                                            while($reg = mysqli_fetch_assoc($res)) {
-                                                $nomeCategoria[$i] = $reg['Nome_Categoria'];
-                                                $codigoCategoria[$i] = $reg['Codigo_Categoria'];
-
-                                                ?>
-                                                <div class="col-md-3 itensCadastrados text-center">
-                                                    <h4><?php echo $nomeCategoria[$i]; ?></h4>
-                                                    <input type="checkbox" name="<?php 'chCategoria_'.$i; ?>" value="<?php echo
-                                                    $codigoCategoria[$i]; ?>">
-                                                </div>
-
-                                                <?php
-                                                $i++;
-                                            }
-                                            $_SESSION['maxCategorias'] = $i;
                                         }else{
-                                            echo "Erro ao executr a query!";
+                                            echo 'Erro ao executar a query!';
                                         }
-                                    ?>
+                                        ?>
+                                    </div>
                                 </div>
-                            </div>
-                            <!------------------ FIM DA EXIBIÇÃO DAS CATEGORIAS ------------------>
-                            <!-- </div>
-                            </div> -->
+                                <!----------- FIM DA EXIBIÇÃO DOS DIRETORES --------------->
+
+                                <!----------- EXIBIÇÃO DOS ATORES/ATRIZES ------------------>
+                                <div class="tab-pane fade" id="tabAtores" role="tabpanel" aria-labelledby="linkAtores">
+                                    <h3>Selecione os Atores(a) do Filme</h3>
+                                    <div class="row">    
+                                        <?php 
+                                            $sql = "SELECT * FROM vw_retorna_atores";
+                                            if ($res = mysqli_query($con, $sql)) {
+
+                                                $nomeAtor = array();
+                                                $codigoAtor = array();
+                                                $imagemAtor = array();
+                                                $i = 0;
+                                            
+                                                while($reg = mysqli_fetch_assoc($res)) {
+                                                    $linhas = mysqli_affected_rows($con);
+                                                    $nomeAtor[$i] = $reg['nome_ator'];
+                                                    $codigoAtor[$i] = $reg['codigo_ator'];
+                                                    $imagemAtor[$i] = $reg['caminho_imagem'];
+
+                                                    if (!isset($imagemAtor[$i])) {
+                                                        $imagemAtor[$i] = "sem_imagem.jpg";
+                                                    }
+                                                    ?>
+                                                    <div class="col-md-3 itensCadastrados text-center">
+                                                        <img src="../imagens/atores/<?php echo $imagemAtor[$i]; ?>" class="
+                                                        img-responsive img-thumbnail">
+                                                        <h4><?php echo $nomeAtor[$i]; ?></h4>
+                                                        <input type="checkbox" name="<?php 'chAtor_'.$i; ?>" value="<?php echo
+                                                        $codigoAtor[$i]; ?>">
+                                                    </div>
+
+                                                    <?php
+                                                    $i++;
+                                                }
+                                                $_SESSION['maxAtores'] = $i;
+                                            if ($linhas == 0) {
+                                                ?>
+                                    
+                                                <div class="alert alert-danger" role="alert">
+                                                    <h4>Nenhum diretor cadastrado!</h4>
+                                                </div>
+                                                <?php
+                                            }
+                                        }else{
+                                            echo 'Erro ao executar a query!';
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+                                <!----------- FIM DA EXIBIÇÃO DOS ATORES/ATRIZES --------------->
+
+                                <!----------- EXIBIÇÃO DOS CATEGORIAS ------------------>
+                                <div class="tab-pane fade" id="tabCategorias" role="tabpanel" aria-labelledby="linkCategorias">
+                                    <h3>Selecione a categoria do filme</h3>
+                                    <div class="row">    
+                                        <?php 
+                                            $sql = "SELECT * FROM vw_retorna_categorias";
+                                            if ($res = mysqli_query($con, $sql)) {
+
+                                                $nomeCategoria = array();
+                                                $codigoCategoria = array();
+                                                $i = 0;
+                                            
+                                                while($reg = mysqli_fetch_assoc($res)) {
+                                                    $nomeCategoria[$i] = $reg['Nome_Categoria'];
+                                                    $codigoCategoria[$i] = $reg['Codigo_Categoria'];
+
+                                                    ?>
+                                                    <div class="col-md-3 itensCadastrados text-center">
+                                                        <h4><?php echo $nomeCategoria[$i]; ?></h4>
+                                                        <input type="checkbox" name="<?php 'chCategoria_'.$i; ?>" value="<?php echo
+                                                        $codigoCategoria[$i]; ?>">
+                                                    </div>
+
+                                                    <?php
+                                                    $i++;
+                                                }
+                                                $_SESSION['maxCategorias'] = $i;
+                                            }else{
+                                                echo "Erro ao executr a query!";
+                                            }
+                                        ?>
+                                    </div>
+                                </div>
+
+                                <!------------------ FIM DA EXIBIÇÃO DAS CATEGORIAS ------------------>
                             </div>
                             <button type="submit" name="btnSubmitFilmes" class="btn btn-primary w-100 mb-1">Salvar Alteraçoes</button>                </form>
-                        </div>
+                            </div>
             
                         </form>        
             </div>
