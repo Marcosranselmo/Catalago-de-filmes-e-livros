@@ -232,7 +232,7 @@ if ($_SESSION['acesso'] == true) {
                                 '$nomesubtituloFilme',
                                 '$anolancamentoFilme',
                                 '$trailerFilme',
-                                '$sinopseFilme',
+                                '$sinopse_filme',
                                 '$nomeImagem[0]',
                                 '$codigoImagem[0]',
                                 '$nomeImagem[1]',
