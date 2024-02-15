@@ -46,7 +46,7 @@
                         if($linhas > 0) {
                             while( $reg = mysqli_fetch_assoc($res) ) {
                             $codigoImagem[$i]    = $reg['codigo_imagem'];
-                            $linhasImagem[$i]    = $reg['link_imagem'];
+                            $linksImagem[$i]    = $reg['link_imagem'];
                             $caminhoImagem[$i]   = $reg['caminho_imagem'];
                             $descricaoImagem[$i] = $reg['descricao_imagem'];
                             $codigoBanner[$i]    = $reg['codigo_banner'];
