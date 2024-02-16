@@ -184,4 +184,10 @@ function excluiUmaImagem($codigo, $alvo){
     if (isset($con)) { mysqli_close($con); }
 }
 
+// FUNÇÃO PARA CRIAR UM SALT ALEATÓRIO
+function geraSalt() {
+    $salt = substr(sha1(rand()), 2, 22);
+    return($salt);
+}
+
 ?>

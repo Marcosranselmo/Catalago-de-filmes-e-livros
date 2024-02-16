@@ -67,7 +67,7 @@
                         $login = $_POST['txtLogin'];
                         $senha = $_POST['txtSenha1'];
                         $nivel = $_POST['selNivel'];
-                        $salt = '123';
+                        $salt = geraSalt();
 
                         $sql = "CALL sp_cadastra_usuario('$nome','$login','$email','$senha','$salt','$nivel',@saida,@rotulo)";
 

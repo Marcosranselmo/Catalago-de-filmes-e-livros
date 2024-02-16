@@ -55,28 +55,35 @@
                     if (isset($_POST['btnSubmitLogin'])) {
                         $usuario = $_POST['txtLogin'];
                         $senha = $_POST['txtSenha'];
-                        $sql = "SELECT login, senha FROM usuarios WHERE login = '$usuario' AND senha = '$senha'";
-                        if ($res=mysqli_query($con,$sql)) {
-                            $linhas = mysqli_affected_rows($con);
-                            if ($linhas > 0) {
-                                $_SESSION['acesso']=true;
-                                ?>
-                                <div class="alert alert-success" role="alert">
-                                    <h5 class="text-center">Login efetuado com sucesso! Redirecionando...</h5>
-                                </div>
-                                <meta http-equiv="refresh" content=3;url="../adm.php">
-                            <?php
-                            }else{ ?>
-                                 <div class="alert alert-danger" role="alert">
-                                    <h5 class="text-center">Usuário ou senha inválida!</h5>
-                                    <a href="login.php" class="alert-link" target="_self">Voltar</a>
-                                </div>
-                            <?php
-                            }
-                            }else{
-                                echo '<h3>Erro ao executar a Query!</h3>';
-                            }
+                        // $sql = "SELECT login, senha FROM usuarios WHERE login = '$usuario' AND senha = '$senha'";
+                        $sql = "CALL sp_verifica_senha('$usuario','$senha',@a)";
+                        if ($res = mysqli_query($con, $sql)) {
+                            $reg = mysqli_fetch_assoc($res);
+                            $saida = $reg['saida'];
+                            switch ($saida) {
+                                case 'TUDO CERTO!':
+                                    $alert = 'alert-success';
+                                    ?>
+                                    <div class="alert <?php echo $alert; ?>" role="alert">
+                                        <h3><?php echo "Login efetuado com sucesso!"; ?></h3>
+                                    </div>
+                                    <meta http-equiv="refresh" content=1;url="../Adm.php">
+                                    <?php
+                                    $_SESSION['acesso'] = true;
+                                    break;
+                                case 'ERRO!':
+                                    $alert = 'alert-danger';
+                                    ?>
+                                    <div class="alert <?php echo $alert; ?>" role="alert">
+                                        <h3><?php echo "Login ou senha inválido!"; ?></h3>
+                                    </div>
+                                    <?php
+                                    break;
+                            }    
                         }else{
+                            echo "Erro ao executar a query";
+                        }
+                        }else{    
                     ?>
                     <form name="fmLogin" method="post" action="login.php" onsubmit="return ValidaCampos();">
                         <h3 class="text-center mb-4">Login</h3>
@@ -90,5 +97,8 @@
     </main>
     <?php if(isset($con)){ mysqli_close($con); } ?>
 </body>
-<?php } ?>
+
+<?php 
+} 
+?>
 </html>
