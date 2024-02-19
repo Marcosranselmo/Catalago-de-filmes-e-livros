@@ -23,27 +23,28 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                         aria-expanded="false">Categorias</a>
-                    <ul class="dropdown-menu mt-2">
-                        <li><a class="dropdown-item" href="#">Ação</a></li>
+                    <div class="dropdown-menu mt-2">
+                        <a class="dropdown-item" href="#">Ação</a>
                         <li><a class="dropdown-item" href="#">Aventura</a></li>
                         <li><a class="dropdown-item" href="#">Comédia</a></li>
-                    </ul>
+                    </div>
                 </li>
             </ul>
             <div class="d-lg-flex col-lg-2 justify-content-lg-end">
                 <a class="nav-link" href="../adm.php">administração</a>
             </div>
             <!-- DROPDOWN MENU -->
-            <div class="nav-item dropdown d-lg-flex col-lg-2 justify-content-lg-end">
+            <!-- <div class="dropdown d-lg-flex col-lg-2 justify-content-lg-end"> -->
+            <div class="dropdown">    
                 <a class="btn btn-dark dropdown-toggle" href="#" role="button" id="dropdownMenu" data-toggle="dropdown" aria-raspopup="true" aria-expanded="false">
-                    <?php echo "nome.usuario"; ?>
+                    <?php echo $_SESSION['usuario']; ?>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu">
-                    <a href="minhaConta.php" class="dropdown-item">Minha Conta</a>
+                    <a href="minhaConta.php" class="dropdown-item" class="fas fa-user-cog" >Minha Conta</a>
     
-                    <a href="alterarSenha.php" class="dropdown-item">Alterar Senha</a>
+                    <a href="alterarSenha.php" class="dropdown-item" class="fas fa-asterisk">Alterar Senha</a>
     
-                    <a href="logoff.php" class="dropdown-item">Sair</a>
+                    <a href="logoff.php" class="dropdown-item" class="fas fa-sign-out-alt">Sair</a>
                 </div>
             </div>
         </div>

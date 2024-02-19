@@ -70,6 +70,7 @@
                                     <meta http-equiv="refresh" content=1;url="../Adm.php">
                                     <?php
                                     $_SESSION['acesso'] = true;
+                                    $_SESSION['usuario'] = $usuario;
                                     break;
                                 case 'ERRO!':
                                     $alert = 'alert-danger';
