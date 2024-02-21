@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <?php
-if (!isset($_SESSION)) {
-    session_start();
-}
-if ($_SESSION['acesso'] == true) {
+    if (!isset($_SESSION)) {
+        session_start();
+    }
+    if ($_SESSION['acesso'] == true) {
 ?>
 <html>
 
 <head>
     <?php
-    include_once "header.html";
+    include "../header.html";
     include_once "../mais/conexao.php";
     include_once "../mais/funcoes.php";
     ?>
@@ -18,7 +18,7 @@ if ($_SESSION['acesso'] == true) {
 
 <body class="adm">
     <!-- MENU SUPERIOR -->
-    <?php include_once "menuSuperior.html" ?>
+    <?php include "../administracao/menuSuperior.html" ?>
     <!-- //MENU SUPERIOR -->
 
     <!-- PRINCIPAL -->
@@ -27,7 +27,7 @@ if ($_SESSION['acesso'] == true) {
         <div class="row gy-4 mt-4">
             <!-- MENU LATERAL -->
             <div class="col-md-3 col-sm-3">
-                <?php include_once "menuAdm.html"; ?>
+                <?php include "../administracao/menuAdm.html"; ?>
             </div>
             <!-- //MENU LATERAL -->
 
@@ -256,17 +256,16 @@ if ($_SESSION['acesso'] == true) {
 
 
     <!-- //PRINCIPAL -->
-    <?php if (isset($con)) {
-        mysqli_close($con);
-    } ?>
+    <?php if (isset($con)) {mysqli_close($con); } ?>
 </body>
 
-    <script src="https://kit.fontawesome.com/4bb29d1df9.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://kit.fontawesome.com/4bb29d1df9.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
-    </script>
+    </script> -->
 
 <?php
-} else { ?>
+    } else { 
+?>
     <meta http-equiv="refresh" content=0;url="login.php">
 <?php
 }

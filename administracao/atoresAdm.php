@@ -5,39 +5,39 @@ if (!isset($_SESSION)) {
 }
 if ($_SESSION['acesso'] == true) {
 ?>
-    <html>
+<html>
 
-    <head>
-        <?php
-        include_once "header.html";
-        include_once "../mais/conexao.php";
-        include_once "../mais/funcoes.php";
-        ?>
-        <title>Cadastro Atores</title>
-        <script type="text/javascript">
-            function validaCampos() {
-                if (document.fmAtores.txtNome.value == "") {
-                    alert("Preencha o nome!");
-                    document.fmAtores.txtNome.focus();
-                    return false;
-                }
-                if (document.fmAtores.txtBiografia.value == "") {
-                    alert("Preencha o campo Biografia!");
-                    document.fmAtores.txtBiografia.focus();
-                    return false;
-                }
-                if (document.fmAtores.selPais.value == 0) {
-                    alert("Escolha um País!");
-                    document.fmAtores.selPais.focus();
-                    return false;
-                }
+<head>
+<?php
+    include "../header.html";
+    include_once "../mais/conexao.php";
+    include_once "../mais/funcoes.php";
+?>
+<title>Cadastro Atores</title>
+    <script type="text/javascript">
+        function validaCampos() {
+            if (document.fmAtores.txtNome.value == "") {
+                alert("Preencha o nome!");
+                document.fmAtores.txtNome.focus();
+                return false;
             }
-        </script>
-    </head>
+            if (document.fmAtores.txtBiografia.value == "") {
+                alert("Preencha o campo Biografia!");
+                document.fmAtores.txtBiografia.focus();
+                return false;
+            }
+            if (document.fmAtores.selPais.value == 0) {
+                alert("Escolha um País!");
+                document.fmAtores.selPais.focus();
+                return false;
+            }
+        }
+    </script>
+</head>
 
-    <body class="administracao">
+    <body class="adm">
         <!-- MENU SUPERIOR -->
-        <?php include_once "menuSuperior.html"; ?>
+        <?php include "../administracao/menuSuperior.html" ?>
         <!-- FIM MENU SUPERIOR -->
 
         <!-- PRINCIPAL -->
@@ -191,14 +191,12 @@ if ($_SESSION['acesso'] == true) {
             </div>
         </main>
 
-        <?php if (isset($con)) {
-            mysqli_close($con);
-        } ?>
+        <?php if (isset($con)) {mysqli_close($con);} ?>
     </body>
 
 <script src="https://kit.fontawesome.com/4bb29d1df9.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
-</script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+</script> -->
 
 <?php
 } else { ?>

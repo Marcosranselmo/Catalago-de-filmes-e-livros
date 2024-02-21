@@ -1,23 +1,23 @@
 <!doctype html>
-<html lang="pt-br">
 <?php
     if (!isset($_SESSION)) {
         session_start();
     }
     if ($_SESSION['acesso'] == true) {
 ?>
+<html>
 <head>
 <?php
-    include_once "header.html";
-    include_once "./mais/conexao.php";
-    ?>
-    <title>Administração</title>
+    include "./header.html";
+    include "./mais/conexao.php";
+?>
+<title>Administração</title>
 
 </head>
 
 <body class="adm">
     <!-- MENU SUPERIOR -->
-    <?php include_once "menuSuperior.html" ?>
+    <?php include "./administracao/menuSuperior.html" ?>
     <!-- //MENU SUPERIOR -->
 
     <!-- PRINCIPAL -->
@@ -105,9 +105,9 @@
 </body>
 <?php 
     }else{
-        ?>
-        <meta http-equiv="refresh" content=0;url="administracao/login.php">
-        <?php
-    } 
+?>
+    <meta http-equiv="refresh" content=0;url="./login.php">
+<?php
+} 
 ?>
 </html>

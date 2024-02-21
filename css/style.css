@@ -1,0 +1,11 @@
+.nav {
+    background-color: green;
+    max-width: 1200px;
+    /* text-align: center; */
+    /* align-items: center; */
+}
+
+.nav .navbar .container {
+    max-height: 15px;
+}
+

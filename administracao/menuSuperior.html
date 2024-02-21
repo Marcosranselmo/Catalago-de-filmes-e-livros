@@ -1,21 +1,21 @@
 <nav class="navbar navbar-expand-lg bg-primary rounded" aria-label="Thirteenth navbar example">
-    <div class="container">
+    <div class="container bg-success">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample11"
             aria-controls="navbarsExample11" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse d-lg-flex" id="navbarsExample11">
-            <a class="navbar-brand col-lg-2 me-0" href="../index.php">Logo</a>
-            <ul class="navbar-nav col-lg-6 justify-content-lg-center">
+            <a class="navbar-brand col-md-2 me-0" href="/FilmesNaEstante/index.php">Logo</a>
+            <ul class="navbar-nav col-md-6 justify-content-lg-center">
                 <li class="nav-item">
-                    <a class="nav-link" href="../filmes.php">Filmes</a>
+                    <a class="nav-link" href="./administracao/filmesAdm.php">Filmes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../diretores.php">Diretores</a>
+                    <a class="nav-link" href="./administracao/diretoresAdm.php">Diretores</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../atores.php">Atores</a>
+                    <a class="nav-link" href="./administracao/atoresAdm.php">Atores</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="../contato.php">Contato</a>
@@ -25,17 +25,17 @@
                         aria-expanded="false">Categorias</a>
                     <div class="dropdown-menu mt-2">
                         <a class="dropdown-item" href="#">Ação</a>
-                        <li><a class="dropdown-item" href="#">Aventura</a></li>
-                        <li><a class="dropdown-item" href="#">Comédia</a></li>
+                        <a class="dropdown-item" href="#">Aventura</a>
+                        <a class="dropdown-item" href="#">Comédia</a>
                     </div>
                 </li>
             </ul>
-            <div class="d-lg-flex col-lg-2 justify-content-lg-end">
+            <div class="d-lg-flex col-md-2 justify-content-lg-end">
                 <a class="nav-link" href="../adm.php">administração</a>
             </div>
             <!-- DROPDOWN MENU -->
             <!-- <div class="dropdown d-lg-flex col-lg-2 justify-content-lg-end"> -->
-            <div class="dropdown">    
+            <div class="dropdown col-md-2">    
                 <a class="btn btn-dark dropdown-toggle" href="#" role="button" id="dropdownMenu" data-toggle="dropdown" aria-raspopup="true" aria-expanded="false">
                     <?php echo $_SESSION['usuario']; ?>
                 </a>

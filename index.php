@@ -1,14 +1,21 @@
 <!doctype html>
 <html lang="pt-br">
 
+<?php
+    if (!isset($_SESSION)) {
+        session_start();
+    }
+
+?>
+
 <head>
-    <?php include "header.html" ?>
+    <?php include "./header.html" ?>
     <title>Home</title>
 </head>
 
 <body>
     <!-- MENU SUPERIOR -->
-    <?php include "menuSuperior.html" ?>
+    <?php include "./administracao/menuSuperior.html" ?>
     <!-- //MENU SUPERIOR -->
 
     <!-- SLIDER -->
@@ -172,17 +179,19 @@
             </div>
         </div>
     </div>
-    <!-- //DIRETORES POPULARES -->
+<!-- //DIRETORES POPULARES -->
 
-    <!-- // PRINCIPAL -->
+<!-- // PRINCIPAL -->
 
-    <!-- FOOTER -->
-    <?php include_once "footer.html" ?>
-    <!-- //FOOTER -->
+<!-- FOOTER -->
+<?php include_once "footer.html" ?>
+<!-- //FOOTER -->
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
+
+        <?php if (isset($con)) {mysqli_close($con); } ?>        
 </body>
 
 </html>
