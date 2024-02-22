@@ -9,10 +9,10 @@
 
 <head>
     <?php
-    include "../header.html";
-    include_once "../mais/conexao.php";
-    include_once "../mais/funcoes.php";
-    ?>
+        /* include "../header.html"; */
+        /* include "../mais/conexao.php"; */
+        include_once "../mais/funcoes.php";
+        ?>
     <title>Filmes</title>
 </head>
 
@@ -27,7 +27,7 @@
         <div class="row gy-4 mt-4">
             <!-- MENU LATERAL -->
             <div class="col-md-3 col-sm-3">
-                <?php include "../administracao/menuAdm.html"; ?>
+                <?php include_once "menuAdm.html"; ?>
             </div>
             <!-- //MENU LATERAL -->
 
@@ -259,9 +259,9 @@
     <?php if (isset($con)) {mysqli_close($con); } ?>
 </body>
 
-    <!-- <script src="https://kit.fontawesome.com/4bb29d1df9.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
-    </script> -->
+<script src="https://kit.fontawesome.com/4bb29d1df9.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+</script>
 
 <?php
     } else { 

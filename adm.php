@@ -6,11 +6,12 @@
     if ($_SESSION['acesso'] == true) {
 ?>
 <html>
+    
 <head>
-<?php
-    include "./header.html";
-    include "./mais/conexao.php";
-?>
+    <?php
+        include "./header.html";
+        include "./mais/conexao.php";
+    ?>
 <title>Administração</title>
 
 </head>

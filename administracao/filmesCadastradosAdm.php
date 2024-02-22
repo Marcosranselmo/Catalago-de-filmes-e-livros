@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html>
+<?php
+    if (!isset($_SESSION)) {
+        session_start();
+    }
+    if ($_SESSION['acesso'] == true) {
+?>
 <head>
     <?php
-        include_once "header.html";
+        include_once "../header.html";
         include_once "../mais/conexao.php";
         include_once "../mais/funcoes.php";
     ?>
@@ -82,4 +88,10 @@
     crossorigin="anonymous">
 </script>
 </body>
-</html>
+<?php
+    } else { 
+?>
+    <meta http-equiv="refresh" content=0;url="login.php">
+<?php
+}
+?>

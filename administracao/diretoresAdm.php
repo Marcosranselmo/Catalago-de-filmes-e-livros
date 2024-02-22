@@ -5,35 +5,35 @@ if (!isset($_SESSION)) {
 }
 if ($_SESSION['acesso'] == true) {
 ?>
-    <html>
+<html>
 
-    <head>
-        <?php
-        include_once "header.html";
-        include_once "../mais/conexao.php";
-        include_once "../mais/funcoes.php";
-        ?>
-        <title>Cadastro Diretores</title>
-        <script type="text/javascript">
-            function validaCampos() {
-                if (document.fmDiretores.txtNome.value == "") {
-                    alert("Preencha o nome!");
-                    document.fmDiretores.txtNome.focus();
-                    return false;
-                }
-                if (document.fmDiretores.txtBiografia.value == "") {
-                    alert("Preencha o campo Biografia!");
-                    document.fmDiretores.txtBiografia.focus();
-                    return false;
-                }
-                if (document.fmDiretores.selPais.value == 0) {
-                    alert("Escolha um País!");
-                    document.fmDiretores.selPais.focus();
-                    return false;
-                }
+<head>
+    <?php
+    include_once "header.html";
+    include_once "../mais/conexao.php";
+    include_once "../mais/funcoes.php";
+    ?>
+    <title>Cadastro Diretores</title>
+    <script type="text/javascript">
+        function validaCampos() {
+            if (document.fmDiretores.txtNome.value == "") {
+                alert("Preencha o nome!");
+                document.fmDiretores.txtNome.focus();
+                return false;
             }
-        </script>
-    </head>
+            if (document.fmDiretores.txtBiografia.value == "") {
+                alert("Preencha o campo Biografia!");
+                document.fmDiretores.txtBiografia.focus();
+                return false;
+            }
+            if (document.fmDiretores.selPais.value == 0) {
+                alert("Escolha um País!");
+                document.fmDiretores.selPais.focus();
+                return false;
+            }
+        }
+    </script>
+</head>
 
     <body class="administracao">
         <!-- MENU SUPERIOR -->
