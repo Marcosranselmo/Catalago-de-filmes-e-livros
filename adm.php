@@ -105,7 +105,7 @@
     <?php if (isset($con)) { mysqli_close($con); } ?>
 </body>
 <?php 
-    }else{
+}else{
 ?>
     <meta http-equiv="refresh" content=0;url="./login.php">
 <?php

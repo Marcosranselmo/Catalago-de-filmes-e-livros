@@ -9,8 +9,8 @@
 
 <head>
     <?php
-        /* include "../header.html"; */
-        /* include "../mais/conexao.php"; */
+        include "../header.html";
+        include "../mais/conexao.php";
         include_once "../mais/funcoes.php";
         ?>
     <title>Filmes</title>

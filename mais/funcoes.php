@@ -67,7 +67,7 @@ function executaQuerySimples($sql){
             case 'TUDO CERTO!':
                 $alert = 'alert-success';
                 break;
-            case 'ERRO! Algo deu errado ao vincular o filme com o Diretor.':
+            case 'ERRO! Algo deu errado ao vincular o filme com ofiretor.':
                 $alert = 'alert-danger';
                 break;
         }
@@ -79,7 +79,8 @@ function executaQuerySimples($sql){
     } else {
         echo "Erro ao executar a query.";
     }
-    if (isset($con)) {mysqli_close($con); }
+    if (isset($con)) {mysqli_close($con);
+    }
 }
 
 // FUNÇÃO PARA EXCLUIR TODAS AS IMAGENS DE UM ATOR/DIRETOR/FILME/BANNER

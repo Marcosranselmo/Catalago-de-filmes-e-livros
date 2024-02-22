@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<?php
+    if (!isset($_SESSION)) {
+        session_start();
+    }
+    if ($_SESSION['acesso'] == true) {
+?>
 <html>
 <head>
     <?php
@@ -168,4 +174,7 @@
 
 <?php if(isset($con)){ mysqli_close($con); } ?>
 </body>
+<?php
+}
+?>
 </html>
