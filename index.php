@@ -5,7 +5,9 @@
     if (!isset($_SESSION)) {
         session_start();
     }
-    if ($_SESSION['usuario'] = true) {
+    if (isset($_SESSION['acesso'])) {
+        $_SESSION['usuario'];
+    }
 ?>
 
 <head>
@@ -196,11 +198,5 @@
     <?php if (isset($con)) {mysqli_close($con); } ?>        
 </body>
 
-<?php
-} else { 
-?>
 
-<?php
-} 
-?>
 </html>
