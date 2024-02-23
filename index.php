@@ -5,10 +5,14 @@
     if (!isset($_SESSION)) {
         session_start();
     }
+    if ($_SESSION['usuario'] = true) {
 ?>
 
 <head>
-    <?php include "./header.html" ?>
+    <?php 
+    include "./header.html"; 
+    /* include "./mais/conexao.php"; */
+?>
     <title>Home</title>
 </head>
 
@@ -192,4 +196,11 @@
     <?php if (isset($con)) {mysqli_close($con); } ?>        
 </body>
 
+<?php
+} else { 
+?>
+
+<?php
+} 
+?>
 </html>
