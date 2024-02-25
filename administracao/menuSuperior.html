@@ -37,7 +37,8 @@
             <!-- <div class="dropdown d-lg-flex col-lg-2 justify-content-lg-end"> -->
             <div class="dropdown col-md-2">    
                 <a class="btn btn-dark dropdown-toggle" href="#" role="button" id="dropdownMenu" data-toggle="dropdown" aria-raspopup="true" aria-expanded="false">
-                    <?php echo $_SESSION['usuario']; ?>
+                    <!-- <?php echo $_SESSION['usuario']; ?> -->
+                    $_SESSION['usuario'] = $usuario->nome; 
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu">
                     <a href="minhaConta.php" class="dropdown-item" class="fas fa-user-cog" >Minha Conta</a>
