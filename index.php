@@ -6,14 +6,14 @@
         session_start();
     }
     if (isset($_SESSION['acesso'])) {
-        $_SESSION['usuario'];
+        echo $_SESSION['usuario'];
     }
 ?>
 
 <head>
     <?php 
     include "./header.html"; 
-    /* include "./mais/conexao.php"; */
+    include "./mais/conexao.php";
 ?>
     <title>Home</title>
 </head>

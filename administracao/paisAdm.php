@@ -1,5 +1,11 @@
-<!DOCTYPE html
+<!DOCTYPE html>
 <html>
+<?php
+    if (!isset($_SESSION)) {
+        session_start();
+    }
+    if ($_SESSION['acesso'] == true) {
+?>
 <head>
     <?php
         include_once "header.html";
@@ -96,4 +102,7 @@
     crossorigin="anonymous">
 </script>
 </body>
+<?php
+}
+?>
 </html>
