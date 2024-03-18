@@ -1,14 +1,15 @@
-<!doctype html>
-<html lang="pt-br">
+
 
 <?php
     if (!isset($_SESSION)) {
         session_start();
     }
     if (isset($_SESSION['acesso'])) {
-        echo $_SESSION['usuario'];
+        /* $_SESSION['usuario']; */
     }
 ?>
+<!doctype html>
+<html lang="pt-br">
 
 <head>
     <?php 
